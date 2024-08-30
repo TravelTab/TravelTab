@@ -5,7 +5,7 @@ const mongoRun = require('./Mongo/dbms'); // 몽고DB 실행 구문 모듈
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'public'))); // 경로 변환
+app.use(express.static(path.join(__dirname, '../Front/build'))); // 경로 변환
 
 //서버 시작 구문 시작
 const hostname = '127.0.0.1';
@@ -18,9 +18,9 @@ app.listen(port, hostname, () => {
 
 mongoRun().catch(console.dir); // 몽고 DB 접속 구문
 
-// index 페이지 부분 시작 
+// index 페이지 부분 시작
 app.get('/index.html', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../Front/public/index.html'));
-  console.log('index.html 페이지를 보내주었습니다!-cors');
+  res.sendFile(path.join(__dirname, 'build', 'index.html')); // build 폴더 가정
+  console.log('index.html 페이지를 보내주었습니다!');
 });
-// index 페이지 부분 끝 
+// index 페이지 부분 끝
