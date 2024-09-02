@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ERcomponents from "./ERcomponents.js";
+import DisplaySetting from "../../shared/DisplaySetting";
+import Header from "../../shared/components/Header";
 
 const ExchangeRate = () => {
   const [currentTime, setCurrentTime] = useState("");
@@ -25,31 +27,16 @@ const ExchangeRate = () => {
     // 컴포넌트 언마운트 시 interval 제거
     return () => clearInterval(intervalId);
   }, []);
-  return (
-    <div className="relative w-[360px] h-[800px] bg-[#fff] overflow-hidden">
+  return (<DisplaySetting>
+
       <div className="absolute left-0 top-0 w-[360px] h-[640px] flex">
         <div className="absolute left-0 top-0 w-[360px] h-[640px] bg-[#fff]"></div>
-        <div className="absolute left-0 top-0 w-[360px] h-[56px] bg-[#91f6ba]"></div>
-        <img
-          className="absolute left-[21px] top-[16px]"
-          width="14"
-          height="23"
-          src="./img/ExchangeRate/Component 121_417.png"
-        ></img>
-        <img
-          className="absolute left-[322px] top-[19px]"
-          width="18"
-          height="18"
-          src="./img/ExchangeRate/Component 121_418.png"
-        ></img>
+        <Header/>
         <div className="absolute -translate-x-1/2 left-[calc(50%+-84px)] top-[108px] text-[30px] font-['Inter'] font-semibold text-[#000] whitespace-nowrap">
           오늘의 환율
         </div>
-        <div className="absolute -translate-x-1/2 left-1/2 top-[16px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap">
-          환율 정보
-        </div>
       </div>
-      <div className="absolute -translate-x-1/2 left-[calc(50%+-50px)] top-[153px] text-[20px] font-['Inter'] font-semibold text-[#000] whitespace-nowrap">
+      <div className="absolute -translate-x-1/2 left-[calc(50%+-62px)] top-[153px] text-[20px] font-['Inter'] font-semibold text-[#000] whitespace-nowrap">
         {currentTime}
       </div>{" "}
       {/*실시간 날짜, 요일 및 시간*/}
@@ -307,7 +294,7 @@ const ExchangeRate = () => {
           </div>
         </div>
       </div>
-    </div>
+    </DisplaySetting>
   );
 };
 

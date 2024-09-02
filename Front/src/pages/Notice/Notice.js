@@ -1,10 +1,12 @@
+import DisplaySetting from "../../shared/DisplaySetting";
+import Header from "../../shared/components/Header";
+import Ncomponents from "./Ncomponents";
+
 const Notice = () => {
-	return (<div className="relative w-[360px] h-[640px] bg-[#fff] overflow-hidden">
+	return (<DisplaySetting>
   <div className="absolute left-0 top-0 w-[360px] h-[640px] flex">
     <div className="absolute left-0 top-0 w-[360px] h-[640px] bg-[#fff]"></div>
-    <div className="absolute left-0 top-0 w-[360px] h-[56px] bg-[#91f6ba]"></div>
-    <img className="absolute left-[21px] top-[16px]" width="14" height="23" src="./img/Notice/Component 121_667.png"></img>
-    <img className="absolute left-[322px] top-[19px]" width="18" height="18" src="./img/Notice/Component 121_668.png"></img>
+    <Header/>
     <div className="absolute -translate-x-1/2 left-1/2 top-[16px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap">공지사항</div>
   </div>
   <div className="absolute left-0 top-[223px] w-[360px] h-[3px] flex">
@@ -132,15 +134,17 @@ const Notice = () => {
     <img className="absolute left-[2.24%] right-[92.18%] top-[27.03%] bottom-[25.7%]" width="17" height="17" src="./img/Notice/Vector21_680.png"></img>
     <div className="absolute left-[36px] top-[9px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#8e8e8e] whitespace-nowrap">검색</div>
   </div>
-  <div className="absolute left-[21px] top-[242px] w-[177px] h-[37px] flex">
-    <div className="absolute left-0 top-0 w-[177px] h-[14px] text-[16px] font-['Inter'] font-bold text-[#000]">이벤트 당첨에 대한 안내문</div>
-    <div className="absolute left-0 top-[23px] w-[74px] h-[14px] text-[12px] font-['Inter'] text-[#565656]">2024-08-29</div>
-  </div>
+  <div>
+      <Ncomponents
+        notice_1="이벤트 당첨에 대한 안내문"
+        date_1="2024-08-29"
+        />
+      </div>
   <div className="absolute left-[21px] top-[316px] w-[177px] h-[37px] flex">
-    <div className="absolute left-0 top-0 w-[177px] h-[14px] text-[16px] font-['Inter'] font-bold text-[#000]">오류에 대한 안내문</div>
+    <div className="absolute left-0 top-0 w-[200px] h-[14px] text-[16px] font-['Inter'] font-bold text-[#000]">오류에 대한 안내문</div>
     <div className="absolute left-0 top-[23px] w-[74px] h-[14px] text-[12px] font-['Inter'] text-[#565656]">2024-08-28</div>
   </div>
-</div>)
+</DisplaySetting>)
 }
 
 export default Notice
