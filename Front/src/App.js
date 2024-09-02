@@ -25,17 +25,22 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<FirstPage />} />
-        <Route path="/detail" element={<Detail />} />
+        {/* 서연 */}
         <Route path="/exchangerate" element={<ExchangeRate />} />
+        {/* 태양 */}
         <Route path="/findingatm" element={<FindingATM />} />
+        {/* 영현 */}
         <Route path="/main" element={<Main />} />
+        {/* 서연 */}
         <Route path="/myCard" element={<MyCard />} />
+        {/* 영현 */}
         <Route path="/mytrip" element={<MyTrip />} />
+        {/* 영현 */}
         <Route path="/notice" element={<Notice />} />
-        <Route path="/profileedit" element={<ProfileEdit />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/termofuse" element={<TermOfUse />} />
-        <Route path="/termofuseclick" element={<TermOfUseClick />} />
+        {/* 태양 */}
+        <Route path="/profile" element={<Profile/>} />
+        {/*  태양*/}
+
         <Route path="/error" element={<Error />} exact />
         <Route path="/*" element={<Navigate replace to="/error" />} />
       </Routes>
