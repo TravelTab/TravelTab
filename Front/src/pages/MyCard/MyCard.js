@@ -1,13 +1,11 @@
+import Header from '../../shared/components/Header'
+import DisplaySetting from '../../shared/DisplaySetting'
+
 const MyCard = () => {
-	return (<div className="relative w-[360px] h-[640px] bg-[#fff] overflow-hidden">
-  <div className="absolute left-0 top-0 w-[360px] h-[640px] flex">
-    <div className="absolute left-0 top-0 w-[360px] h-[640px] bg-[linear-gradient(180deg,#f4fffb_0%,#fff_100%)]"></div>
-    <div className="absolute left-0 top-0 w-[360px] h-[56px] bg-[#91f6ba]"></div>
-    <img className="absolute left-[21px] top-[16px]" width="14" height="23" src="./img/MyCard/Component 19_191.png"></img>
-    <img className="absolute left-[322px] top-[19px]" width="18" height="18" src="./img/MyCard/Component 19_192.png"></img>
+	return (<DisplaySetting>
+    <Header/>
     <div className="absolute -translate-x-1/2 left-1/2 top-[96px] text-[20px] font-['Inter'] font-semibold text-[#000] whitespace-nowrap">트래블로그 체크 카드 (0828)</div>
     <div className="absolute -translate-x-1/2 left-1/2 top-[16px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap">내 카드</div>
-  </div>
   <div className="absolute -translate-x-1/2 left-1/2 top-[151px] w-[275px] h-[362px] bg-[#fff] rounded-[10px] shadow-[0_4px_9px_-1px_#00000059]"></div>
   <div className="absolute left-[70px] top-[328px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#409aa6] whitespace-nowrap">혜택</div>
   <div className="absolute left-[70px] top-[451px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#409aa6] whitespace-nowrap">지원 통화</div>
@@ -28,7 +26,7 @@ const MyCard = () => {
   </div>
   <img className="absolute left-[168px] top-[308px]" width="24" height="24" src="./img/MyCard/Add card9_221.png"></img>
   <div className="absolute -translate-x-1/2 left-[calc(50%+289px)] top-[151px] w-[275px] h-[362px] bg-[#fff] rounded-[10px] shadow-[0_4px_9px_-1px_#00000059]"></div>
-</div>)
+</DisplaySetting>)
 }
 
 export default MyCard
