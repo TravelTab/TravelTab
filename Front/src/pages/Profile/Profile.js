@@ -1,12 +1,19 @@
+import { useNavigate } from "react-router-dom";
+import DisplaySetting from "../../shared/DisplaySetting";
+import Header from "../../shared/components/Header";
+
 const Profile = () => {
-	return (<div className="relative w-[360px] h-[640px] bg-[#fff] overflow-hidden">
+  const navigate = useNavigate();
+
+  const handleEditProfile = () => {
+    navigate('./Profile.js'); // 버튼 클릭 시 연결되는 주소
+  };
+
+	return (<DisplaySetting>
+
   <div className="absolute left-0 top-0 w-[360px] h-[640px] bg-[linear-gradient(180deg,#f4fffb_0%,#fff_100%)]"></div>
+  <Header/>
   <div className="absolute -translate-x-1/2 left-1/2 top-[80px] w-[196px] h-[196px] bg-[#d9d9d9] rounded-full shadow-[0_4px_4px_14px_#ffffff4d]"></div>
-  <div className="absolute left-0 top-0 w-[360px] h-[56px] flex">
-    <div className="absolute left-0 top-0 w-[360px] h-[56px] bg-[#91f6ba]"></div>
-    <img className="absolute left-[21px] top-[16px]" width="14" height="23" src="./img/Profile/Component 19_140.png"></img>
-    <img className="absolute left-[322px] top-[19px]" width="18" height="18" src="./img/Profile/Component 19_135.png"></img>
-  </div>
   <div className="absolute -translate-x-1/2 left-1/2 top-[288px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#000] text-center whitespace-nowrap">김토뱅</div>
   <div className="absolute -translate-x-1/2 left-1/2 top-[16px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap">프로필</div>
   <div className="absolute left-[39px] top-[363px] w-[281px] h-[32px] flex">
@@ -48,9 +55,9 @@ const Profile = () => {
   </div>
   <div className="absolute left-[124px] top-[320px] w-[112px] h-[24px] flex">
     <img className="absolute left-0 top-0" width="24" height="24" src="./img/Profile/Group23_164.png"></img>
-    <div className="absolute left-[29px] top-[7px] w-[83px] h-[14px] text-[12px] font-['Inter'] text-[#737373]">프로필 수정하기</div>
+    <div className="absolute left-[29px] top-[7px] w-[90px] h-[14px] text-[12px] font-['Inter'] text-[#737373] text-align-["><button onClick={handleEditProfile}>프로필 수정하기</button></div>
   </div>
-</div>)
+</DisplaySetting>)
 }
 
 export default Profile

@@ -34,7 +34,7 @@ function App() {
         <Route path="/notice" element={<Notice />} />
         {/* 태양 */}
         <Route path="/profile" element={<Profile/>} />
-        {/*  태양*/}
+        {/* 태양 */}
 
         <Route path="/error" element={<Error />} exact />
         <Route path="/*" element={<Navigate replace to="/error" />} />

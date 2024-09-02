@@ -4,7 +4,7 @@ const Header=()=>{
         title="내 여행";
     if (window.location.pathname==='/mycard')
         title="내 카드";
-    if (window.location.pathname==='/excahngerate')
+    if (window.location.pathname==='/exchangerate')
         title="환율 정보";
     if (window.location.pathname==='/notice')
         title="공지사항";
