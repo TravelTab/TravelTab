@@ -1,3 +1,26 @@
+import React, { useState } from 'react';
+
+const TextInput = () => {
+  const [value, setValue] = useState(''); // 상태 관리
+
+  const handleChange = (event) => {
+    setValue(event.target.value); // 입력 값 업데이트
+  };
+
+  return (
+    <div>
+      <input 
+        type="text" 
+        value={value} 
+        onChange={handleChange} 
+        placeholder="텍스트를 입력하세요"
+      />
+      <p>입력한 내용: {value}</p>
+    </div>
+  );
+};
+
+
 const ProfileEdit = () => {
 	return (<div className="relative w-[360px] h-[640px] bg-[#fff] overflow-hidden">
   <div className="absolute left-0 top-0 w-[360px] h-[640px] flex">

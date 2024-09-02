@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 const Profile = () => {
+  const navigate = useNavigate();
+
+  const handleEditProfile = () => {
+    navigate('./Profile.js'); // 버튼 클릭 시 연결되는 주소
+  };
+
 	return (<div className="relative w-[360px] h-[640px] bg-[#fff] overflow-hidden">
   <div className="absolute left-0 top-0 w-[360px] h-[640px] bg-[linear-gradient(180deg,#f4fffb_0%,#fff_100%)]"></div>
   <div className="absolute -translate-x-1/2 left-1/2 top-[80px] w-[196px] h-[196px] bg-[#d9d9d9] rounded-full shadow-[0_4px_4px_14px_#ffffff4d]"></div>
@@ -48,7 +56,7 @@ const Profile = () => {
   </div>
   <div className="absolute left-[124px] top-[320px] w-[112px] h-[24px] flex">
     <img className="absolute left-0 top-0" width="24" height="24" src="./img/Profile/Group23_164.png"></img>
-    <div className="absolute left-[29px] top-[7px] w-[83px] h-[14px] text-[12px] font-['Inter'] text-[#737373]">프로필 수정하기</div>
+    <div className="absolute left-[29px] top-[7px] w-[90px] h-[14px] text-[12px] font-['Inter'] text-[#737373] text-align-["><button onClick={handleEditProfile}>프로필 수정하기</button></div>
   </div>
 </div>)
 }

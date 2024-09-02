@@ -5,7 +5,6 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Detail from "./pages/Detail/Detail.js";
 import ExchangeRate from "./pages/ExchangeRate/ExchangeRate.js";
 import FindingATM from "./pages/FindingATM/FindingATM.js";
 import FirstPage from "./pages/FirstPage/FirstPage.js";
@@ -14,10 +13,6 @@ import MyCard from "./pages/MyCard/MyCard.js";
 import MyTrip from "./pages/MyTrip/MyTrip.js";
 import Notice from "./pages/Notice/Notice.js";
 import Profile from "./pages/Profile/Profile.js";
-import ProfileEdit from "./pages/ProfileEdit/ProfileEdit.js";
-import SignIn from "./pages/SignIn/SignIn.js";
-import TermOfUse from "./pages/TermOfUse/TermOfUse.js";
-import TermOfUseClick from "./pages/TermOfUseClick/TermOfUseClick.js";
 import Error from "./pages/Error.js";
 
 function App() {
@@ -39,7 +34,7 @@ function App() {
         <Route path="/notice" element={<Notice />} />
         {/* 태양 */}
         <Route path="/profile" element={<Profile/>} />
-        {/*  태양*/}
+        {/* 태양 */}
 
         <Route path="/error" element={<Error />} exact />
         <Route path="/*" element={<Navigate replace to="/error" />} />
