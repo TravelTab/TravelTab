@@ -1,0 +1,21 @@
+.container {
+  background-color: #14de84;
+}
+.sidebar {
+  background-color: #6600ff;
+  border-top: 4px solid #202020;
+  width: 600px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transition: 0.4s ease;
+  color: #202020;
+  z-index: 0;
+}
+
+.content {
+  padding: 40px 40px 0 20px;
+  position: relative;
+  width: 100%;
+}

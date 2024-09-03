@@ -25,7 +25,7 @@ const Header = () => {
     >
       {/* 뒤로가기 버튼 */}
       <img
-        style={{ width: "14px", height: "24px" }}
+        style={{ width: "14px", height: "24px", marginLeft: "10px" }}
         src="./img/MyTrip/Component 111_34.png"
         onClick={back}
       ></img>
