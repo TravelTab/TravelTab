@@ -1,6 +1,7 @@
 import DisplaySetting from "../../shared/DisplaySetting";
 import Header from "../../shared/components/Header";
 import Ncomponents from "./Ncomponents";
+import DashedLine from "../DashedLine";
 
 const Notice = () => {
   return (
@@ -13,125 +14,25 @@ const Notice = () => {
         </div>
       </div>
       <div className="absolute left-0 top-[223px] w-[360px] h-[3px] flex">
-        <div className="absolute left-0 top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[20px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[40px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[60px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[81px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[101px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[121px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[141px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[161px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[181px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[201px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[222px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[242px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[262px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[282px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[302px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[322px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[342px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
+      <DashedLine/>
       </div>
       <div className="absolute left-0 top-[296px] w-[360px] h-[3px] flex">
-        <div className="absolute left-0 top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[20px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[40px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[60px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[81px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[101px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[121px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[141px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[161px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[181px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[201px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[222px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[242px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[262px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[282px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[302px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[322px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[342px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
+      <DashedLine/>
       </div>
       <div className="absolute left-0 top-[369px] w-[360px] h-[3px] flex">
-        <div className="absolute left-0 top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[20px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[40px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[60px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[81px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[101px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[121px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[141px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[161px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[181px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[201px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[222px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[242px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[262px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[282px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[302px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[322px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[342px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
+      <DashedLine/>
       </div>
       <div className="absolute left-0 top-[443px] w-[360px] h-[3px] flex">
-        <div className="absolute left-0 top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[20px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[40px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[60px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[81px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[101px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[121px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[141px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[161px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[181px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[201px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[222px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[242px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[262px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[282px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[302px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[322px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[342px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
+      <DashedLine/>
       </div>
       <div className="absolute left-0 top-[516px] w-[360px] h-[3px] flex">
-        <div className="absolute left-0 top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[20px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[40px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[60px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[81px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[101px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[121px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[141px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[161px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[181px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[201px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[222px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[242px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[262px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[282px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[302px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[322px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[342px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
+      <DashedLine/>
       </div>
       <div className="absolute left-0 top-[589px] w-[360px] h-[3px] flex">
-        <div className="absolute left-0 top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[20px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[40px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[60px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[81px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[101px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[121px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[141px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[161px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[181px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[201px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[222px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[242px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[262px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[282px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[302px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[322px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
-        <div className="absolute left-[342px] top-0 w-[18px] h-[3px] bg-[#6cd4964d]"></div>
+      <DashedLine/>
       </div>
+
+      
       <div className="absolute left-[24px] top-[100px] w-[313px] h-[37px] flex">
         <img
           className="absolute left-0 top-0"

@@ -1,6 +1,79 @@
-.Profile-1 {
-  border-radius: 0.5rem;
+/* 전체 컨테이너 스타일 */
+.container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background:  #fff 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* 프로필 이미지 스타일 */
+.profile-image {
+  width: 30vw;
+  max-width: 196px;
+  height: 30vw;
+  max-height: 196px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  box-shadow: 0 4px 4px 14px rgba(255, 255, 255, 0.30);
+  margin-top: 2rem;
+}
+
+/* 텍스트 스타일 */
+.text {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  margin-top: 1rem;
+}
+
+/* 섹션 스타일 */
+.section {
+  width: 80%;
+  max-width: 281px;
   height: 32px;
-  width: 300px;
+  display: flex;
+  align-items: center;
   background-color: #efefef;
+  border-radius: 9px;
+  margin: 0.5rem 0;
+  padding: 0 1rem;
+}
+
+/* 항목 스타일 */
+.item {
+  font-size: 1rem;
+  color: #494949;
+  flex-shrink: 0; /* 텍스트가 줄어들지 않도록 고정 */
+}
+
+/* 값 스타일 */
+.value {
+  padding-left: 1rem; /* 간격 확보를 위해 paddingLeft 추가 */
+  margin-left: auto;
+  font-size: 1rem;
+  color: #727272;
+  flex-grow: 1; /* 공간을 더 차지하도록 설정하여 텍스트가 한 줄로 출력 */
+  text-align: right; /* 오른쪽 정렬 */
+  overflow: hidden; /* 텍스트가 넘어가는 경우 숨김 처리 */
+  text-overflow: ellipsis; /* 텍스트가 넘칠 경우 ...으로 표시 */
+  white-space: nowrap; /* 텍스트가 줄바꿈 없이 한 줄로 출력 */
+}
+
+/* 아이콘 스타일 */
+.icon {
+  margin-right: 8px;
+}
+
+/* 프로필 수정 스타일 */
+.edit-profile {
+  display: flex; /* Flexbox로 설정하여 좌우 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  margin-top: 1rem;
 }
