@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ERcomponents from "./ERcomponents.js";
 import DisplaySetting from "../../shared/DisplaySetting";
-import Header from "../../shared/components/Header/Header.js";
+import Header from "../../shared/components/Header.js";
 
 const ExchangeRate = () => {
   const [currentTime, setCurrentTime] = useState("");

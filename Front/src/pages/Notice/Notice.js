@@ -1,5 +1,5 @@
 import DisplaySetting from "../../shared/DisplaySetting";
-import Header from "../../shared/components/Header/Header";
+import Header from "../../shared/components/Header";
 import Ncomponents from "./Ncomponents";
 
 const Notice = () => {

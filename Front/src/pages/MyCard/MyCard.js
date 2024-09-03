@@ -1,4 +1,4 @@
-import Header from "../../shared/components/Header/Header";
+import Header from "../../shared/components/Header";
 import DisplaySetting from "../../shared/DisplaySetting";
 import Card from "./components/Card";
 import AddCard from "./components/AddCard";

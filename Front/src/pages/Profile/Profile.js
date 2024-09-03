@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import DisplaySetting from "../../shared/DisplaySetting";
-import Header from "../../shared/components/Header/Header";
+import Header from "../../shared/components/Header";
 
 const Profile = () => {
   const navigate = useNavigate();
