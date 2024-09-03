@@ -1,7 +1,7 @@
 import Header from "../../shared/components/Header";
 import DisplaySetting from "../../shared/DisplaySetting";
 import Card from "./components/Card";
-import AddCard from "./components/AddCard";
+import TermOfUse from "./components/TermOfUse";
 
 const MyCard = () => {
   return (
@@ -14,7 +14,7 @@ const MyCard = () => {
         <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
         <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
       </div>
-      <AddCard />
+      <TermOfUse />
     </DisplaySetting>
   );
 };
