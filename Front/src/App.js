@@ -6,7 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import ExchangeRate from "./pages/ExchangeRate/ExchangeRate.js";
-import FindingATM from "./pages/FindingATM/FindingATM.js";
+import ATMMap from "./pages/ATMMap/ATMMap.js";
 import FirstPage from "./pages/FirstPage/FirstPage.js";
 import Main from "./pages/Main/Main.js";
 import MyCard from "./pages/MyCard/MyCard.js";
@@ -23,7 +23,7 @@ function App() {
         {/* 서연 */}
         <Route path="/exchangerate" element={<ExchangeRate />} />
         {/* 태양 */}
-        <Route path="/findingatm" element={<FindingATM />} />
+        <Route path="/atmmap" element={<ATMMap />} />
         {/* 영현 */}
         <Route path="/main" element={<Main />} />
         {/* 서연 */}

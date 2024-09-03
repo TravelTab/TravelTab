@@ -1,3 +1,5 @@
+
+
 const FindingATM = () => {
 	return (<div className="relative w-[360px] h-[640px] bg-[#fff] overflow-hidden">
   <img className="absolute left-[-70px] top-[-18px]" width="500" height="658" src="./img/FindingATM/Rectangle9_13.png"></img>
