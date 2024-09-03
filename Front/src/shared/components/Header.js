@@ -13,19 +13,30 @@ const Header = () => {
   }
 
   return (
-    <div>
-      <div className="absolute left-0 top-0 w-[360px] h-[56px] bg-[#91f6ba]"></div>
+    <div
+      style={{
+        width: "100%",
+        height: "56px",
+        background: "#91f6ba",
+        display: "flex",
+        alignItems: "center",
+        position: "relative",
+      }}
+    >
       {/* 뒤로가기 버튼 */}
       <img
-        className="absolute left-[21px] top-[16px]"
-        width="14"
-        height="23"
+        style={{ width: "14", height: "23" }}
         src="./img/MyTrip/Component 111_34.png"
         onClick={back}
       ></img>
       {/* X 버튼 */}
       <img
-        className="absolute left-[322px] top-[19px]"
+        style={{
+          position: "absolute",
+          right: "16px",
+          top: "50%",
+          transform: "translateY(-50%)",
+        }}
         width="18"
         height="18"
         src="./img/MyTrip/Component 111_35.png"
