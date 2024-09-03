@@ -1,8 +1,10 @@
+import Sidebar from "../../shared/components/Sidebar"
+
 const Main = () => {
-  <h3>kajdshfkjadh</h3>
-	return (<div className="relative w-[360px] h-[932px] bg-[#fff] overflow-hidden">
-  <div className="absolute left-0 top-0 w-[360px] h-[50px] bg-[#91f6ba] overflow-hidden">
+	return (<div className="relative w-[360px] h-[932px] bg-[#fff]">
+  <div className="absolute left-0 top-0 w-[100px] h-[50px] bg-[#91f6ba]">
     <div className="absolute left-[89.17%] right-[5.83%] top-[32%] bottom-[32%]">
+      <Sidebar/>
       <img className="absolute left-0 top-0" width="18" height="18" src="./img/Main/GroupI5_176;5_83.png"></img>
     </div>
     <div className="absolute left-[6.94%] right-[84.17%] top-[18%] bottom-[18%] bg-[#fff] rounded-full"></div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ERcomponents from "./ERcomponents.js";
 import DisplaySetting from "../../shared/DisplaySetting";
-import Header from "../../shared/components/Header";
+import Header from "../../shared/components/Header/Header.js";
 
 const ExchangeRate = () => {
   const [currentTime, setCurrentTime] = useState("");
@@ -27,11 +27,11 @@ const ExchangeRate = () => {
     // 컴포넌트 언마운트 시 interval 제거
     return () => clearInterval(intervalId);
   }, []);
-  return (<DisplaySetting>
-
+  return (
+    <DisplaySetting>
       <div className="absolute left-0 top-0 w-[360px] h-[640px] flex">
         <div className="absolute left-0 top-0 w-[360px] h-[640px] bg-[#fff]"></div>
-        <Header/>
+        <Header />
         <div className="absolute -translate-x-1/2 left-[calc(50%+-84px)] top-[108px] text-[30px] font-['Inter'] font-semibold text-[#000] whitespace-nowrap">
           오늘의 환율
         </div>
