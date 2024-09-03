@@ -1,0 +1,19 @@
+.login-button {
+  height: 40px;
+  width: 182px;
+}
+.rectangle-4-0 {
+  border-radius: 0.625rem;
+  height: 40px;
+  width: 182px;
+  background-color: linear-gradient(0deg, rgb(255, 255, 255), #31ED93);;
+}
+.text-1 {
+  text-align: left;
+  vertical-align: top;
+  font-size: 16px;
+  font-family: Noto Sans KR;
+  letter-spacing: -2%;
+  line-height: 120.00000476837158%;
+  color: #6a6a6a;
+}

@@ -1,3 +1,4 @@
+
 const FirstPage = () => {
   return (
     <div className="relative w-[360px] h-[640px] bg-[#fff] overflow-hidden">
