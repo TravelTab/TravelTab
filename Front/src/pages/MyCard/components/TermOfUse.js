@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./TermOfUse.module.css";
 
-const TermOfUse = ({ height = 100, children }) => {
+const TermOfUse = ({ height = 200, children }) => {
   const [isOpen, setOpen] = useState(false);
   const [YPosition, setY] = useState(-height);
   const side = useRef();
@@ -45,7 +45,7 @@ const TermOfUse = ({ height = 100, children }) => {
           alignItems: "center", // 수평 중앙 정렬
           justifyContent: "center", // 수직 중앙 정렬
           position: "absolute", // 위치를 절대적으로 설정
-          top: "550px", // 상단에서 50% 위치
+          top: "80%", // 상단에서 50% 위치
           left: "50%", // 왼쪽에서 50% 위치
           transform: "translate(-50%, -50%)", // 중앙 정렬을 위한 변환
           cursor: "pointer", // 클릭 가능한 요소임을 나타내는 커서

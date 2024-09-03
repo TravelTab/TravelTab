@@ -22,7 +22,7 @@ const Card = () => {
           src="./img/MyCard/Add card9_221.png"
           onClick={() => alert("카드추가")}
         ></img>
-        <div style={{ marginLeft: "20px" }}>
+        <div style={{ marginLeft: "20px", textAlign: "left" }}>
           <div
             style={{
               fontSize: "16px",
