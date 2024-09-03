@@ -1,9 +1,10 @@
-require('dotenv').config();
 const express = require('express');
+const moment = require('moment');
 const path = require('path');
-const mongoRun = require('./Mongo/dbms'); // 몽고DB 실행 구문 모듈
-const exchange = require('./Mongo/exchange'); // 몽고DB 실행 구문 모듈
-const nowexchange = require('./exchange/nowexchange'); // 몽고DB 실행 구문 모듈
+const dbms = require('./Mongo/dbms'); // 몽고DB 실행 구문 모듈
+const exchange = require('./exchange/exchange'); // 몽고DB 실행 구문 모듈
+const exchangequery = require('./exchange/nowexchange');
+const exchangeinfo = require('./exchange/exchangeinfo');
 
 const app = express();
 
@@ -17,9 +18,16 @@ app.listen(port, hostname, () => {
   console.log(`서버가 시작되었습니다. http://${hostname}:${port}/`);
 });
 //서버 시작 구문 끝
-let connectcheck = 0;
 
-mongoRun().catch(console.dir); //몽고 DB 상태확인
+dbms.check().catch(console.dir); //몽고 DB 상태확인
+
+app.get('/lastdate', async (req, res) => {
+  await dbms.start();
+  let lastdate = await dbms.last();
+  res.send(lastdate);
+  console.log('마지막 환율 일자를 보내주었습니다.');
+  await dbms.end();
+});
 
 //index 페이지 부분 시작
 app.get('/index.html', (req, res) => {
@@ -28,39 +36,72 @@ app.get('/index.html', (req, res) => {
 });
 //index 페이지 부분 끝
 
-
+//exchange 페이지 부분 시작
 app.get('/exchange.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../Back/exchange.html'));
-  console.log('index.html 페이지를 보내주었습니다!');
+  console.log('exchange.html 페이지를 보내주었습니다!');
 });
 
-app.get('/nowexchange.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Back/nowexchange.html'));
-  console.log('nowexchange.html 페이지를 보내주었습니다!');
+app.post('/execute', async (req, res) => {
+  await dbms.start();//몽고DB 연결
+  console.log('환율 정보를 가져옵니다.');
+  let date = req.body.date;
+  let data = await exchange.exchange(date); //환율가져오기
+  await exchange.repeatquery(data, date);
+  let text = "환율 정보를 가져오는데 성공했습니다."
+  res.send(text);
+  await dbms.end();//몽고DB 연결해제
+});
+//exchange 페이지 부분 끝
+
+//nowexchange 페이지 부분 시작
+app.get('/ExchangeRate.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Back/ExchangeRate.html'));
+  console.log('ExchangeRate.html 페이지를 보내주었습니다!');
 });
 
 app.get('/nowexchange', async (req, res) => {
   console.log('서버에서 환율데이터를 조회합니다.');
-  let today = new Date();
-  let year = today.getFullYear();
-  let month = ('0' + (today.getMonth() + 1)).slice(-2);
-  let day = ('0' + today.getDate()).slice(-2);
-  let nowdate = `${year}${month}${day}`;
+  let nowdate = moment().format('YYYYMMDD');
   try{
-    let exchangedata = await nowexchange(nowdate);
-    console.log(`${exchangedata.length}개의 값을 보냈습니다.`);
+    await dbms.start();//몽고DB 연결
+    let exchangedata = await exchangequery(nowdate);
+    let yesterdaydate = exchangedata.pop();
+    let yesterdaydata = await exchangequery(yesterdaydate);
+    yesterdaydata.pop();
+    exchangedata.push(yesterdaydata);
+    let info = await exchangeinfo();
+    exchangedata.push(info);
+    console.log(`${exchangedata.length}개의 값을 송신`);
     res.send(exchangedata);
+
+    await dbms.end();//몽고DB 연결해제
   } catch(error){console.error(error);}
 });
 
-app.post('/execute', (req, res) => {
-  console.log('서버에서 특정 구문을 실행합니다.');
-  let date = req.body.date;
-  //exchange(date); //환율가져오기
-  
-  let text = "서버에서 구문이 실행되었습니다."
-  res.send(text);
-});
-//exchange 페이지 부분 끝
+//nowexchange 페이지 부분 끝
 
-module.exports = connectcheck;
+//travel 페이지 부분 시작
+app.get('/travel.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Back/travel.html'));
+  console.log('travel.html 페이지를 보내주었습니다!');
+});
+
+app.get('/mytravel', async (req, res) => {
+  console.log('서버에서 각 나라별 오늘의 환율을 조회합니다.');
+  let nowdate = moment().format('YYYYMMDD');
+  try{
+    await dbms.start();//몽고DB 연결
+
+    let exchangedata = await exchangequery(nowdate);
+    exchangedata.pop();
+    let exchangeinfos = await exchangeinfo();
+    exchangedata.push(exchangeinfos);
+    console.log(`${exchangedata.length}개의 값을 송신`);
+    res.send(exchangedata);
+
+    await dbms.end();//몽고DB 연결해제
+  } catch(error){console.error(error);}
+});
+
+//travel 페이지 부분 끝
