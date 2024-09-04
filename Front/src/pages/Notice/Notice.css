@@ -1,0 +1,9 @@
+.newbox {
+  padding: 4px;
+  border-top: 3px dashed #6cd4964d; /* 점선 스타일 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 100vh;
+  overflow-y: auto;
+}

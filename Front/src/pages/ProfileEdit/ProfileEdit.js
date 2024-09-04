@@ -1,98 +1,108 @@
 import React, { useState } from 'react';
-import DisplaySetting from '../../shared/DisplaySetting';
-import Header from '../../shared/components/Header';
+import DisplaySetting from '../../shared/DisplaySetting.js';
+import Header from '../../shared/components/Header.js';
 import '../Profile/Profile.css';
+import Modal from './modal.js';
 
-const TextInput = () => {
-  const [value, setValue] = useState(''); // 상태 관리
+const ProfileEdit = () => {
+  const [profile, setProfile] = useState({
+    이름: '김토뱅',
+    전화번호: '010-1004-1004',
+    이메일: 'imemail@naver.com',
+    주소: '서울특별시 한경 아카데미',
+  });
 
-  const handleChange = (event) => {
-    setValue(event.target.value); // 입력 값 업데이트
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태
+  const [modalContent, setModalContent] = useState(''); // 모달에 표시할 내용
+  const [inputValue, setInputValue] = useState(''); // 모달 입력 값 상태
+  const [currentField, setCurrentField] = useState(''); // 현재 수정 중인 필드 상태
+
+
+  const handleIconClick = (field) => {
+    setModalContent(`${field} 수정하기`); // 클릭한 필드에 따라 모달 내용 설정
+    setInputValue(profile[field]); // 현재 필드의 값을 입력 필드에 설정
+    setCurrentField(field); // 현재 필드를 상태로 저장
+    setIsModalOpen(true); // 모달 열기
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // 모달 닫기
+    setModalContent(''); // 모달 내용 초기화
+    setInputValue(''); // 입력 값 초기화
+    setCurrentField(''); // 현재 필드 초기화
+  };
+
+  const handleSave = () => {
+    if (currentField) {
+      // profile 상태 업데이트
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        [currentField]: inputValue,
+      }));
+    }
+    closeModal(); // 모달 닫기
   };
 
   return (
     <DisplaySetting>
-    <div>
     <Header />
-      <input 
-        type="text" 
-        value={value} 
-        onChange={handleChange} 
-        placeholder="텍스트를 입력하세요"
-      />
-      <p>입력한 내용: {value}</p>
-    </div>
+      <div className="container">
+        <div className="profile-image"></div>
+        <div className="text">{profile.이름}</div>
+
+        <div className="section">
+          <img className="icon" width="16" height="16" src="./img/Profile/Vector6_224.png" alt="Edit" />
+          <div className="item">이름</div>
+          <div className="value" title={profile.이름}>{profile.이름}</div> {/* title 속성을 추가하여 툴팁 표시 */}
+          <img className="icon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit"  onClick={() => handleIconClick('이름')}/>
+        </div>
+
+        <div className="section">
+          <img className="icon" width="14" height="14" src="./img/Profile/Vector6_353.png" alt="Phone" />
+          <div className="item">전화번호</div>
+          <div className="value" title={profile.전화번호}>{profile.전화번호}</div>
+          <img className="icon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('전화번호')}/>
+        </div>
+        
+        <div className="section">
+          <img className="icon" width="17" height="14" src="./img/Profile/Vector6_356.png" alt="Email" />
+          <div className="item">이메일</div>
+          <div className="value" title={profile.이메일}>{profile.이메일}</div>
+          <img className="icon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('이메일')}/>
+        </div>
+
+        <div className="section">
+          <img className="icon" width="16" height="14" src="./img/Profile/Vector6_359.png" alt="Address" />
+          <div className="item">주소</div>
+          <div className="value" title={profile.주소}>{profile.주소}</div>
+          <img className="icon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('주소')}/>
+        </div>
+
+        <div className="section">
+          <img className="icon" width="15" height="12" src="./img/Profile/Vector6_361.png" alt="Card" />
+          <div className="item">내 카드</div>
+          <div className="value" title="하나은행 트래블로그">하나은행 트래블로그</div>
+        </div>
+        
+        <div className="section">
+          <img className="icon" width="15" height="12" src="./img/Profile/Vector6_364.png" alt="Card Number" />
+          <div className="item">카드 번호</div>
+          <div className="value" title="*** **** 0828">*** **** 0828</div>
+        </div>
+
+
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          content={modalContent}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          handleSave={handleSave}
+        />
+      </div>
     </DisplaySetting>
   );
 };
 
-
-const ProfileEdit = () => {
-	return (<div className="relative w-[360px] h-[640px] bg-[#fff] overflow-hidden">
-  <div className="absolute left-0 top-0 w-[360px] h-[640px] flex">
-    <div className="absolute left-0 top-0 w-[360px] h-[640px] bg-[linear-gradient(180deg,#f4fffb_0%,#fff_100%)]"></div>
-    <div className="absolute -translate-x-1/2 left-1/2 top-[80px] w-[196px] h-[196px] bg-[#d9d9d9] rounded-full shadow-[0_4px_4px_14px_#ffffff4d]"></div>
-    <div className="absolute left-0 top-0 w-[360px] h-[56px] flex">
-      <div className="absolute left-0 top-0 w-[360px] h-[56px] bg-[#91f6ba]"></div>
-    </div>
-    <img className="absolute left-[221px] top-[239px]" width="44" height="36" src="./img/ProfileEdit/Group 223_259.png"></img>
-    <div className="absolute -translate-x-1/2 left-1/2 top-[288px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#000] text-center whitespace-nowrap">김토뱅</div>
-    <div className="absolute -translate-x-1/2 left-1/2 top-[16px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap">프로필</div>
-    <div className="absolute left-[39px] top-[363px] w-[281px] h-[32px] flex">
-      <div className="absolute left-0 top-0 w-[281px] h-[32px] bg-[#efefef] rounded-[9px]"></div>
-
-      <div className="section">
-          <img className="icon" width="16" height="16" src="./img/Profile/Vector6_224.png" alt="Edit" />
-          <div className="item">이름</div>
-          <div className="value" title="김토뱅">김토뱅</div> {/* title 속성을 추가하여 툴팁 표시 */}
-        </div>
-      </div>
-
-      <div className="section">
-          <img className="icon" width="14" height="14" src="./img/Profile/Vector6_353.png" alt="Phone" />
-          <div className="item">전화번호</div>
-          <div className="value" title="010-1004-1004">010-1004-1004</div>
-      </div>
-
-      <div className="section">
-          <img className="icon" width="17" height="14" src="./img/Profile/Vector6_356.png" alt="Email" />
-          <div className="item">이메일</div>
-          <div className="value" title="imemail@naver.com">imemail@naver.com</div>
-      </div>
-
-    <div className="absolute left-[39px] top-[498px] w-[281px] h-[32px] flex">
-      <div className="absolute left-0 top-0 w-[281px] h-[32px] bg-[#efefef] rounded-[9px]"></div>
-      <div className="absolute left-[32px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#494949] whitespace-nowrap">집 주소</div>
-      <img className="absolute left-[3.56%] right-[90.75%] top-[28.12%] bottom-[28.12%]" width="16" height="14" src="./img/ProfileEdit/Vector23_280.png"></img>
-    </div>
-    <div className="absolute left-[39px] top-[543px] w-[281px] h-[32px] flex">
-      <div className="absolute left-0 top-0 w-[281px] h-[32px] bg-[#efefef] rounded-[9px]"></div>
-      <img className="absolute left-[3.91%] right-[90.75%] top-[31.25%] bottom-[31.25%]" width="15" height="12" src="./img/ProfileEdit/Vector23_283.png"></img>
-      <div className="absolute left-[32px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#8f8f8f] whitespace-nowrap">내 카드</div>
-      <div className="absolute left-[126px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#8f8f8f] whitespace-nowrap">하나은행 트래블로그</div>
-    </div>
-    <div className="absolute left-[39px] top-[588px] w-[281px] h-[32px] flex">
-      <div className="absolute left-0 top-0 w-[281px] h-[32px] bg-[#efefef] rounded-[9px]"></div>
-      <img className="absolute left-[3.91%] right-[90.75%] top-[28.12%] bottom-[34.38%]" width="15" height="12" src="./img/ProfileEdit/Vector23_288.png"></img>
-      <div className="absolute left-[32px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#8f8f8f] whitespace-nowrap">카드 번호</div>
-      <div className="absolute left-[156px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#8f8f8f] whitespace-nowrap"> *** **** 0828</div>
-    </div>
-    <div className="absolute left-[124px] top-[320px] w-[112px] h-[24px] flex">
-      <img className="absolute left-0 top-0" width="24" height="24" src="./img/ProfileEdit/Group23_292.png"></img>
-      <div className="absolute left-[29px] top-[7px] w-[83px] h-[14px] text-[12px] font-['Inter'] text-[#737373]">프로필 수정하기</div>
-    </div>
-    <img className="absolute left-[84.44%] right-[12.78%] top-[58.28%] bottom-[40.16%]" width="10" height="10" src="./img/ProfileEdit/Vector23_298.png"></img>
-    <img className="absolute left-[84.44%] right-[12.78%] top-[65.47%] bottom-[32.97%]" width="10" height="10" src="./img/ProfileEdit/Vector23_299.png"></img>
-    <img className="absolute left-[84.44%] right-[12.78%] top-[72.66%] bottom-[25.78%]" width="10" height="10" src="./img/ProfileEdit/Vector23_300.png"></img>
-    <img className="absolute left-[84.44%] right-[12.78%] top-[79.84%] bottom-[18.59%]" width="10" height="10" src="./img/ProfileEdit/Vector23_301.png"></img>
-  </div>
-  <div className="absolute left-0 top-0 w-[360px] h-[640px] bg-[#2b2b2b80] filter-[backdrop-blur(2px)]"></div>
-  <div className="absolute -translate-x-1/2 left-1/2 top-[324px] w-[36px] h-[14px] text-[12px] font-['Inter'] text-[#fff]">0 / 60</div>
-  <div className="absolute -translate-x-1/2 left-1/2 top-[279px] w-[272px] h-[41px] bg-[#fff] rounded-[7px]"></div>
-  <div className="absolute -translate-x-1/2 left-1/2 top-[311px] w-[247px] h-0 border-[1px] border-solid border-[#565656]"></div>
-  <div className="absolute -translate-x-1/2 left-1/2 top-[286px] w-[20px] h-0 border-[1px] border-solid border-[#4a4a4a]"></div>
-</div>
-);
-};
-
-export default ProfileEdit
+export default ProfileEdit;

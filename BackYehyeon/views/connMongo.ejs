@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .grey-bg {
+  background: #eee;
+}
+.white-bg {
+  background: white;
+  margin: 20px;
+  border-radius: 5px;
+}
+.list-box {
+  padding : 10px;
+  border-bottom: 1px solid#eee;
+}
+.list-box h4{
+  font-size: 16px;
+  margin: 5px;
+  display: inline;
+
+}
+.list-box p {
+  font-size: 13px;
+  margin: 5px;
+  color: grey;
+  display: inline;
+}
+</style>
+
+<body>
+    <div>
+        <% for (var i = 0; i < 카드목록.length; i++) { %>
+            <div class="list-box">
+                <% 
+                    const keys = Object.keys(카드목록[i]);
+                    const values = Object.values(카드목록[i]);
+                %>
+                <% for (var j = 1; j < keys.length; j++) { %>
+                    <h4><%= keys[j] %></h4>
+                    <p><%= values[j] %></p>
+                    <br>
+                <% } %>
+            </div>
+            <br>
+        <% } %>
+    </div>
+</body>
+</html>

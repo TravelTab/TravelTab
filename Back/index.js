@@ -5,8 +5,11 @@ const dbms = require('./Mongo/dbms'); // 몽고DB 실행 구문 모듈
 const exchange = require('./exchange/exchange'); // 몽고DB 실행 구문 모듈
 const exchangequery = require('./exchange/nowexchange');
 const exchangeinfo = require('./exchange/exchangeinfo');
+const api = require('./api/api');
+
 
 const app = express();
+
 
 app.use(express.static(path.join(__dirname, '../Front/build'))); //경로 변환
 app.use(express.json());
@@ -36,6 +39,7 @@ app.get('/index.html', (req, res) => {
 });
 //index 페이지 부분 끝
 
+
 //firstpage 페이지 부분 시작
 app.get('/firstpage.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', '../firstpage.html'));
@@ -46,8 +50,8 @@ app.post('/register', async (req, res) => {
   await dbms.start();//몽고DB 연결
   let data = req.body;
   //console.log(data);
-  let log = await dbms.register(data.email, data.password, data.username);
-  console.log(log);
+  let register = await dbms.register(data.email, data.password, data.username);
+  res.send(register);
   await dbms.end();//몽고DB 연결해제
 });
 //firstpage 페이지 부분 끝
@@ -61,10 +65,8 @@ app.get('/login.html', (req, res) => {
 app.post('/login', async (req, res) => {
   await dbms.start();//몽고DB 연결
   let data = req.body;
-  //console.log(data);
-  let log = await dbms.login(data.email, data.password);
-  let text = `로그인에 성공했습니다. ${log}`
-  res.send(text);
+  let token = await dbms.login(data.email, data.password);
+  res.send(token);
   await dbms.end();//몽고DB 연결해제
 });
 //firstpage 페이지 부분 끝
@@ -77,12 +79,14 @@ app.get('/exchange.html', (req, res) => {
 
 app.post('/execute', async (req, res) => {
   await dbms.start();//몽고DB 연결
-  console.log('환율 정보를 가져옵니다.');
-  let date = req.body.date;
-  let data = await exchange.exchange(date); //환율가져오기
-  await exchange.repeatquery(data, date);
-  let text = "환율 정보를 가져오는데 성공했습니다."
-  res.send(text);
+  //console.log('환율 정보를 가져옵니다.');
+  //let date = req.body.date;
+  //let data = await exchange.exchange(date); //환율가져오기
+  //await exchange.repeatquery(data, date);
+  //let text = "환율 정보를 가져오는데 성공했습니다."
+  //res.send(text);
+  let freeatm = await dbms.freeatm();
+  console.log(freeatm);
   await dbms.end();//몽고DB 연결해제
 });
 //exchange 페이지 부분 끝
