@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import DisplaySetting from "../../shared/DisplaySetting";
 import Header from "../../shared/components/Header";
-import Ncomponents from "./Ncomponents";
-import './Notice.css';
+import Ncomponents from "../Notice/components/Ncomponents";
+import '../Notice/components/Notice.css';
 
 const Notice = () => {
   const notices = [

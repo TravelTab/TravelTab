@@ -1,0 +1,62 @@
+.newbox {
+padding: 4px;
+border-top: 3px dashed #6cd4964d;
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-height: 100vh;
+overflow-y: auto;
+}
+.cur {
+font-family: Noto Sans KR;
+font-size: 20px;
+}
+.rate {
+  font-family: Inter;
+  font-size: 35px;
+  }
+
+  .container {
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background:  #fff 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .TodayRate {
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      top: 108px;
+      font-size: 30px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600; /* font-semibold */
+      color: #000;
+      white-space: nowrap;
+    }
+
+  .CurrentTime {
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      top: 165px;
+      font-size: 20px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600; /* font-semibold */
+      color: #000;
+      white-space: nowrap;
+    }
+
+    .RateStyle {
+        position: absolute;
+        transform: translateX(-50%);
+        left: 50%;
+        top: 200px;
+        width: 360px;
+        padding: 32px;
+
+      }

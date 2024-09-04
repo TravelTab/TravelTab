@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './ercomponents.css';
+import './ERcomponents.css';
 
 // 미국 USD 환율 정보를 가져오는 함수
 const fetchUsdRate = async () => {
