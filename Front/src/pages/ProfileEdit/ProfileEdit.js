@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import DisplaySetting from '../../shared/DisplaySetting';
+import Header from '../../shared/components/Header';
+import '../Profile/Profile.css';
 
 const TextInput = () => {
   const [value, setValue] = useState(''); // 상태 관리
@@ -8,7 +11,9 @@ const TextInput = () => {
   };
 
   return (
+    <DisplaySetting>
     <div>
+    <Header />
       <input 
         type="text" 
         value={value} 
@@ -17,6 +22,7 @@ const TextInput = () => {
       />
       <p>입력한 내용: {value}</p>
     </div>
+    </DisplaySetting>
   );
 };
 
@@ -28,28 +34,32 @@ const ProfileEdit = () => {
     <div className="absolute -translate-x-1/2 left-1/2 top-[80px] w-[196px] h-[196px] bg-[#d9d9d9] rounded-full shadow-[0_4px_4px_14px_#ffffff4d]"></div>
     <div className="absolute left-0 top-0 w-[360px] h-[56px] flex">
       <div className="absolute left-0 top-0 w-[360px] h-[56px] bg-[#91f6ba]"></div>
-      <img className="absolute left-[21px] top-[16px]" width="14" height="23" src="./img/ProfileEdit/Component 123_257.png"></img>
-      <img className="absolute left-[322px] top-[19px]" width="18" height="18" src="./img/ProfileEdit/Component 123_258.png"></img>
     </div>
     <img className="absolute left-[221px] top-[239px]" width="44" height="36" src="./img/ProfileEdit/Group 223_259.png"></img>
     <div className="absolute -translate-x-1/2 left-1/2 top-[288px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#000] text-center whitespace-nowrap">김토뱅</div>
     <div className="absolute -translate-x-1/2 left-1/2 top-[16px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap">프로필</div>
     <div className="absolute left-[39px] top-[363px] w-[281px] h-[32px] flex">
       <div className="absolute left-0 top-0 w-[281px] h-[32px] bg-[#efefef] rounded-[9px]"></div>
-      <div className="absolute left-[32px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#494949] whitespace-nowrap">이름</div>
-      <img className="absolute left-[3.56%] right-[90.75%] top-[25%] bottom-[25%]" width="16" height="16" src="./img/ProfileEdit/Vector23_267.png"></img>
-      <div className="absolute left-[217px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#727272] whitespace-nowrap">김토뱅</div>
-    </div>
-    <div className="absolute left-[39px] top-[408px] w-[281px] h-[32px] flex">
-      <div className="absolute left-0 top-0 w-[281px] h-[32px] bg-[#efefef] rounded-[9px]"></div>
-      <img className="absolute left-[3.56%] right-[91.46%] top-[28.12%] bottom-[28.12%]" width="14" height="14" src="./img/ProfileEdit/Vector23_271.png"></img>
-      <div className="absolute left-[32px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#494949] whitespace-nowrap">전화번호</div>
-    </div>
-    <div className="absolute left-[39px] top-[453px] w-[281px] h-[32px] flex">
-      <div className="absolute left-0 top-0 w-[281px] h-[32px] bg-[#efefef] rounded-[9px]"></div>
-      <div className="absolute left-[32px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#494949] whitespace-nowrap">이메일</div>
-      <img className="absolute left-[3.2%] right-[90.75%] top-[28.12%] bottom-[28.12%]" width="17" height="14" src="./img/ProfileEdit/Vector23_276.png"></img>
-    </div>
+
+      <div className="section">
+          <img className="icon" width="16" height="16" src="./img/Profile/Vector6_224.png" alt="Edit" />
+          <div className="item">이름</div>
+          <div className="value" title="김토뱅">김토뱅</div> {/* title 속성을 추가하여 툴팁 표시 */}
+        </div>
+      </div>
+
+      <div className="section">
+          <img className="icon" width="14" height="14" src="./img/Profile/Vector6_353.png" alt="Phone" />
+          <div className="item">전화번호</div>
+          <div className="value" title="010-1004-1004">010-1004-1004</div>
+      </div>
+
+      <div className="section">
+          <img className="icon" width="17" height="14" src="./img/Profile/Vector6_356.png" alt="Email" />
+          <div className="item">이메일</div>
+          <div className="value" title="imemail@naver.com">imemail@naver.com</div>
+      </div>
+
     <div className="absolute left-[39px] top-[498px] w-[281px] h-[32px] flex">
       <div className="absolute left-0 top-0 w-[281px] h-[32px] bg-[#efefef] rounded-[9px]"></div>
       <div className="absolute left-[32px] top-[6px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#494949] whitespace-nowrap">집 주소</div>
@@ -81,7 +91,8 @@ const ProfileEdit = () => {
   <div className="absolute -translate-x-1/2 left-1/2 top-[279px] w-[272px] h-[41px] bg-[#fff] rounded-[7px]"></div>
   <div className="absolute -translate-x-1/2 left-1/2 top-[311px] w-[247px] h-0 border-[1px] border-solid border-[#565656]"></div>
   <div className="absolute -translate-x-1/2 left-1/2 top-[286px] w-[20px] h-0 border-[1px] border-solid border-[#4a4a4a]"></div>
-</div>)
-}
+</div>
+);
+};
 
 export default ProfileEdit

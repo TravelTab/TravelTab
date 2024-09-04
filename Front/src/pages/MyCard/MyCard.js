@@ -1,20 +1,26 @@
 import Header from "../../shared/components/Header";
 import DisplaySetting from "../../shared/DisplaySetting";
 import Card from "./components/Card";
-import AddCard from "./components/AddCard";
+import TermOfUse from "./components/TermOfUse";
+import SwiperWindow from "../../shared/components/SwiperWindow/SwiperWindow";
 
 const MyCard = () => {
   return (
     <DisplaySetting>
       <Header />
-      <Card />
-      <div className="absolute left-[151px] top-[536px] w-[48px] h-[6px] flex flex-row items-center justify-start gap-[4px]">
-        <div className="w-[22px] h-[6px] shrink-0 bg-[#fff] rounded-[10px]"></div>
-        <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
-        <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
-        <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
-      </div>
-      <AddCard />
+      <SwiperWindow>
+        <Card
+          card_name="트래블로그 체크 카드 (0828)"
+          advantage="연회비 없음
+            <br />
+            해외 이용 수수료 면제
+            <br />
+            주요 통화 환전시 환율 100% 우대"
+          current="미국, 일본, 기타, 등등"
+          img_url="./img/MyCard/트래블로그 29_204.png"
+        />
+      </SwiperWindow>
+      <TermOfUse />
     </DisplaySetting>
   );
 };

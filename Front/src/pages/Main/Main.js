@@ -6,10 +6,7 @@ import Card from "../MyCard/components/Card";
 const Main = () => {
   // 카드 이미지 슬라이더 상태 관리
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  <SwiperWindow>
-    <Card/>
-    <Card/>
-  </SwiperWindow>
+
   const cardImages = [
     "./img/Main/Rectangle 16_28.png",
     "./img/Main/Rectangle 16_29.png", // 추가할 이미지 경로
@@ -58,7 +55,14 @@ const Main = () => {
 
       {/* 메인 컨텐츠 */}
       <div className="absolute -translate-x-1/2 left-1/2 top-[96px] w-[294px] h-[784px]">
+      <SwiperWindow>
+    <Card/>
+    <Card/>
+  </SwiperWindow>
+        
         {/* 카드 정보 섹션 */}
+
+
         <div className="relative left-0 top-0 w-[294px] h-[222px] flex">
           <div className="absolute left-[1.36%] right-[52.1%] top-0 bottom-[81.98%] text-[24px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#000]">
             내 카드

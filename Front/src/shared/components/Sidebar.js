@@ -1,31 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Sidebar.module.css";
 
-const Sidebar = ({ width = 50, children }) => {
+const Sidebar = ({ width = 450, children }) => {
   const [isOpen, setOpen] = useState(false);
   const [xPosition, setX] = useState(-width);
   const side = useRef();
 
   // button 클릭 시 토글
   const toggleMenu = () => {
-    alert(xPosition);
-    if (xPosition > 0) {
+    if (xPosition < 0) {
       setX(0);
       setOpen(true);
     } else {
       setX(-width);
       setOpen(false);
     }
-    alert(xPosition);
   };
 
   // 사이드바 외부 클릭시 닫히는 함수
   const handleClose = async (e) => {
     let sideArea = side.current;
-    let sideChildren = side.current.contains(e.target);
-
-    if (isOpen && (!sideArea || !sideChildren)) {
-      await setX(width);
+    let sideCildren = side.current.contains(e.target);
+    if (isOpen && (!sideArea || !sideCildren)) {
+      await setX(-width);
       await setOpen(false);
     }
   };
@@ -43,9 +40,9 @@ const Sidebar = ({ width = 50, children }) => {
         ref={side}
         className={styles.sidebar}
         style={{
-          width: `${width}%`,
+          width: `${width}px`,
           height: "100%",
-          transform: `translatex(${-xPosition}%)`,
+          transform: `translatex(${-xPosition}px)`,
         }}
       >
         <button onClick={() => toggleMenu()} className={styles.button}>
@@ -53,8 +50,10 @@ const Sidebar = ({ width = 50, children }) => {
         </button>
         <div className={styles.content}>
           <ul>
-            <li>one</li>
-            <li>two</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            {children}
           </ul>
         </div>
       </div>

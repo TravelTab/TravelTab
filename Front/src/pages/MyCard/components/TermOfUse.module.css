@@ -1,21 +1,39 @@
 .container {
-  background-color: #14de84;
+  background-color: #e3ecf1;
 }
 .sidebar {
-  background-color: #6600ff;
+  background-color: #ffffff;
   border-top: 4px solid #202020;
-  width: 600px;
   position: fixed;
-  top: 0;
   bottom: 0;
+  left: 0;
   right: 0;
   transition: 0.4s ease;
   color: #202020;
-  z-index: 0;
+  z-index: 99;
 }
 
 .content {
   padding: 40px 40px 0 20px;
   position: relative;
   width: 100%;
+}
+.icon {
+  margin: 0;
+  color: #202020;
+}
+.quitbutton {
+  position: fixed;
+  right: 0%;
+  background-color: aliceblue;
+  color: #1e6b7b;
+  border: 3px solid rgb(0, 0, 0);
+}
+.agreebutton {
+  position: fixed;
+  right: 0%;
+  bottom: 0%;
+  background-color: aliceblue;
+  color: #1e6b7b;
+  border: 3px solid rgb(0, 0, 0);
 }

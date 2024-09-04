@@ -13,6 +13,8 @@ import MyCard from "./pages/MyCard/MyCard.js";
 import MyTrip from "./pages/MyTrip/MyTrip.js";
 import Notice from "./pages/Notice/Notice.js";
 import Profile from "./pages/Profile/Profile.js";
+import ProfileEdit_ from "./pages/ProfileEdit/ProfileEdit_.js";
+import ProfileEdit from "./pages/ProfileEdit/ProfileEdit.js";
 import Error from "./pages/Error.js";
 
 function App() {
@@ -33,7 +35,10 @@ function App() {
         {/* 영현 */}
         <Route path="/notice" element={<Notice />} />
         {/* 태양 */}
-        <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile" element={<Profile />} />
+        {/* 태양 */}
+        <Route path="/profileEdit" element={<ProfileEdit />} />
+        <Route path="/profileedit_" element={<ProfileEdit_ />} />
         {/* 태양 */}
 
         <Route path="/error" element={<Error />} exact />
