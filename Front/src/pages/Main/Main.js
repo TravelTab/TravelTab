@@ -1,4 +1,5 @@
 import Sidebar from "../../shared/components/Sidebar";
+import SwiperWindow from "./SwiperWindow/SwiperWindow";
 
 const Main = () => {
   return (
@@ -25,15 +26,24 @@ const Main = () => {
           <div className="absolute left-[1.36%] right-[52.1%] top-0 bottom-[81.98%] text-[24px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#000]">
             내 카드
           </div>
+
           <div className="absolute left-[4px] top-[34px] text-[20px] font-['Inter'] font-semibold text-[#000] whitespace-nowrap">
             김토뱅님의 여행 카드 정보
           </div>
-          <img
-            className="absolute left-0 top-[67px]"
-            width="294"
-            height="155"
-            src="./img/Main/Rectangle 16_28.png"
-          ></img>
+          <SwiperWindow>
+            <img
+              className="absolute left-0 top-[67px]"
+              width="294"
+              height="155"
+              src="./img/Main/Rectangle 16_28.png"
+            ></img>
+            <img
+              className="absolute left-0 top-[67px]"
+              width="294"
+              height="155"
+              src="./img/Main/Rectangle 16_28.png"
+            ></img>
+          </SwiperWindow>
           <div className="absolute left-[9px] top-[199px] w-[48px] h-[6px] flex flex-row items-center justify-start gap-[4px]">
             <div className="w-[22px] h-[6px] shrink-0 bg-[#fff] rounded-[10px]"></div>
             <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
