@@ -13,8 +13,8 @@ const Profile = () => {
 
   return (
     <DisplaySetting>
+    <Header />
       <div className="container">
-        <Header />
         <div className="profile-image"></div>
         <div className="text">김토뱅</div>
 
