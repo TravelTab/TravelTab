@@ -8,7 +8,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const handleEditProfile = () => {
-    navigate('./ProfileEdit_.js'); // 버튼 클릭 시 연결되는 주소
+    navigate('/profileedit'); // 버튼 클릭 시 연결되는 주소
   };
 
   return (
