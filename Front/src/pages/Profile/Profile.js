@@ -8,7 +8,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const handleEditProfile = () => {
-    navigate('../ProfileEdit/ProfileEdit_.js'); // 버튼 클릭 시 연결되는 주소
+    navigate('./ProfileEdit_.js'); // 버튼 클릭 시 연결되는 주소
   };
 
   return (
@@ -42,7 +42,7 @@ const Profile = () => {
         </div>
         <div className="section">
           <img className="icon" width="16" height="14" src="./img/Profile/Vector6_359.png" alt="Address" />
-          <div className="item">집 주소</div>
+          <div className="item">주소</div>
           <div className="value" title="서울특별시 한경 아카데미">서울특별시 한경 아카데미</div> {/* title 속성 추가 */}
         </div>
         <div className="section">
