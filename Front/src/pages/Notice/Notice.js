@@ -1,64 +1,70 @@
+import { useState } from 'react';
 import DisplaySetting from "../../shared/DisplaySetting";
 import Header from "../../shared/components/Header";
 import Ncomponents from "./Ncomponents";
-import DashedLine from "../DashedLine";
+import './Notice.css';
 
 const Notice = () => {
+  const notices = [
+    { title: "이벤트 당첨에 대한 안내문", date: "2024-08-29" },
+    { title: "오류에 대한 안내문", date: "2024-08-28" },
+    { title: "서비스 점검 안내", date: "2024-08-27" }
+  ];
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredNotices, setFilteredNotices] = useState(notices);
+
+  // 검색어 입력 핸들러
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value); // 필터링은 여기서 하지 않음
+  };
+
+  // 검색 실행 핸들러
+  const handleSearch = () => {
+    const filtered = notices.filter((notice) =>
+      notice.title.includes(searchTerm)
+    );
+    setFilteredNotices(filtered);
+  };
+
+  // 엔터 키로 검색 실행
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <DisplaySetting>
-      <div className="absolute left-0 top-0 w-[360px] h-[640px] flex">
-        <div className="absolute left-0 top-0 w-[360px] h-[640px] bg-[#fff]"></div>
+      <div className="w-full min-h-screen flex flex-col items-center bg-white relative">
         <Header />
-        <div className="absolute -translate-x-1/2 left-1/2 top-[16px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap">
+        <h1 className="text-2xl font-semibold text-center mt-4">
           공지사항
-        </div>
-      </div>
-      <div className="absolute left-0 top-[223px] w-[360px] h-[3px] flex">
-      <DashedLine/>
-      </div>
-      <div className="absolute left-0 top-[296px] w-[360px] h-[3px] flex">
-      <DashedLine/>
-      </div>
-      <div className="absolute left-0 top-[369px] w-[360px] h-[3px] flex">
-      <DashedLine/>
-      </div>
-      <div className="absolute left-0 top-[443px] w-[360px] h-[3px] flex">
-      <DashedLine/>
-      </div>
-      <div className="absolute left-0 top-[516px] w-[360px] h-[3px] flex">
-      <DashedLine/>
-      </div>
-      <div className="absolute left-0 top-[589px] w-[360px] h-[3px] flex">
-      <DashedLine/>
-      </div>
+        </h1>
 
-      
-      <div className="absolute left-[24px] top-[100px] w-[313px] h-[37px] flex">
-        <img
-          className="absolute left-0 top-0"
-          width="313"
-          height="37"
-          src="./img/Notice/Rectangle 3121_678.png"
-        ></img>
-        <img
-          className="absolute left-[2.24%] right-[92.18%] top-[27.03%] bottom-[25.7%]"
-          width="17"
-          height="17"
-          src="./img/Notice/Vector21_680.png"
-        ></img>
-        <div className="absolute left-[36px] top-[9px] text-[16px] leading-[120%] tracking-[-0.02em] font-['Inter'] text-[#8e8e8e] whitespace-nowrap">
-          검색
+        <div className="mt-4 w-[90%] flex items-center border-b-2 pb-2">
+          <input
+            type="text"
+            placeholder="검색"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown} // 엔터 키로 검색 실행
+            className="w-full p-2 text-gray-700 text-sm border border-gray-300 rounded-md"
+          />
+          <img
+            className="mr-2 cursor-pointer"
+            width="17"
+            height="17"
+            src="./img/Notice/Vector21_680.png"
+            alt="Search Icon"
+            onClick={handleSearch} // 돋보기 클릭 시 검색 실행
+          />
         </div>
-      </div>
-      <div>
-        <Ncomponents notice_1="이벤트 당첨에 대한 안내문" date_1="2024-08-29" />
-      </div>
-      <div className="absolute left-[21px] top-[316px] w-[177px] h-[37px] flex">
-        <div className="absolute left-0 top-0 w-[200px] h-[14px] text-[16px] font-['Inter'] font-bold text-[#000]">
-          오류에 대한 안내문
-        </div>
-        <div className="absolute left-0 top-[23px] w-[74px] h-[14px] text-[12px] font-['Inter'] text-[#565656]">
-          2024-08-28
+
+        <div className="w-full mt-4 px-4">
+          {filteredNotices.map((notice, index) => (
+            <Ncomponents key={index} notice_1={notice.title} date_1={notice.date} />
+          ))}
         </div>
       </div>
     </DisplaySetting>

@@ -1,8 +1,8 @@
 .container {
-    background-color: #E3ECF1;
+    background-color: #ffffff;
   }
   .sidebar {
-    background-color: #E3ECF1;
+    background-color: #ffffff;
     border-left: 4px solid #202020;
     position: fixed;
     top: 0;
@@ -33,7 +33,15 @@
     padding: 40px 40px 0 20px;
     position: relative;
     width: 100%;
-  }
+      text-align: left;
+      vertical-align: top;
+      font-size: 24px;
+      font-family: Inter;
+      letter-spacing: -2%;
+      line-height: 200%;
+      color: #000000;
+    }
+  
   .icon {
     margin: 0;
     color: #202020;
