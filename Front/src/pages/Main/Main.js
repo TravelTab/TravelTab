@@ -49,7 +49,8 @@ const Main = () => {
       <div className="absolute left-[-75px] top-[587px] w-[575px] h-[387px] bg-[linear-gradient(180deg,#f0ffd6_0%,#c5ffd5_100%)]"></div>
 
       {/* 타이틀 */}
-      <div className="absolute -translate-x-1/2 left-1/2 top-[10px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap">
+      <div className="absolute -translate-x-1/2 left-1/2 top-[10px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap"
+      style={{ textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)' }}>
         Travel Tap
       </div>
 

@@ -21,7 +21,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<FirstPage />} />
         {/* 서연 */}
         <Route path="/exchangerate" element={<ExchangeRate />} />
         {/* 태양 */}
