@@ -36,6 +36,39 @@ app.get('/index.html', (req, res) => {
 });
 //index 페이지 부분 끝
 
+//firstpage 페이지 부분 시작
+app.get('/firstpage.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', '../firstpage.html'));
+  console.log('firstpage 페이지를 보내주었습니다!');
+});
+
+app.post('/register', async (req, res) => {
+  await dbms.start();//몽고DB 연결
+  let data = req.body;
+  //console.log(data);
+  let log = await dbms.register(data.email, data.password, data.username);
+  console.log(log);
+  await dbms.end();//몽고DB 연결해제
+});
+//firstpage 페이지 부분 끝
+
+//firstpage 페이지 부분 시작
+app.get('/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', '../login.html'));
+  console.log('firstpage 페이지를 보내주었습니다!');
+});
+
+app.post('/login', async (req, res) => {
+  await dbms.start();//몽고DB 연결
+  let data = req.body;
+  //console.log(data);
+  let log = await dbms.login(data.email, data.password);
+  let text = `로그인에 성공했습니다. ${log}`
+  res.send(text);
+  await dbms.end();//몽고DB 연결해제
+});
+//firstpage 페이지 부분 끝
+
 //exchange 페이지 부분 시작
 app.get('/exchange.html', (req, res) => {
   res.sendFile(path.join(__dirname, '../Back/exchange.html'));
@@ -78,7 +111,6 @@ app.get('/nowexchange', async (req, res) => {
     await dbms.end();//몽고DB 연결해제
   } catch(error){console.error(error);}
 });
-
 //nowexchange 페이지 부분 끝
 
 //travel 페이지 부분 시작
