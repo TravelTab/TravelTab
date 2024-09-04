@@ -14,10 +14,7 @@ import MyTrip from "./pages/MyTrip/MyTrip.js";
 import Notice from "./pages/Notice/Notice.js";
 import Profile from "./pages/Profile/Profile.js";
 import ProfileEdit_ from "./pages/ProfileEdit/ProfileEdit_.js";
-<<<<<<< HEAD
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit.js";
-=======
->>>>>>> d9dbc6556619d600e65e15c4ef6de51e3fc4c030
 import Error from "./pages/Error.js";
 
 function App() {
