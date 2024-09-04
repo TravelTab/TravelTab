@@ -13,10 +13,6 @@ import MyCard from "./pages/MyCard/MyCard.js";
 import MyTrip from "./pages/MyTrip/MyTrip.js";
 import Notice from "./pages/Notice/Notice.js";
 import Profile from "./pages/Profile/Profile.js";
-<<<<<<< HEAD
-=======
-import ProfileEdit_ from "./pages/ProfileEdit/ProfileEdit_.js";
->>>>>>> 27d84c29dfda5a8c9da0d87a466ad27642b9d6bc
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit.js";
 import Error from "./pages/Error.js";
 
@@ -24,7 +20,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<FirstPage />} />
         {/* 서연 */}
         <Route path="/exchangerate" element={<ExchangeRate />} />
         {/* 태양 */}
@@ -40,12 +36,7 @@ function App() {
         {/* 태양 */}
         <Route path="/profile" element={<Profile />} />
         {/* 태양 */}
-<<<<<<< HEAD
         <Route path="/profileedit" element={<ProfileEdit />} />
-=======
-        <Route path="/profileEdit" element={<ProfileEdit />} />
-        <Route path="/profileedit_" element={<ProfileEdit_ />} />
->>>>>>> 27d84c29dfda5a8c9da0d87a466ad27642b9d6bc
         {/* 태양 */}
 
         <Route path="/error" element={<Error />} exact />

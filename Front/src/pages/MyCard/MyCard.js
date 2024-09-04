@@ -1,5 +1,6 @@
 import Header from "../../shared/components/Header";
 import DisplaySetting from "../../shared/DisplaySetting";
+import Card from "./components/Card";
 import TermOfUse from "./components/TermOfUse";
 import SwiperWindow from "../../shared/components/SwiperWindow/SwiperWindow";
 
