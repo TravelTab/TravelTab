@@ -1,5 +1,15 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import SwiperWindow from "./SwiperWindow/SwiperWindow";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const CardModal = ({ show, handleClose }) => {
   return (
@@ -8,24 +18,19 @@ const CardModal = ({ show, handleClose }) => {
         <Modal.Title>카드 선택</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
-          <Form.Group controlId="formCardNumber">
-            <Form.Label>카드 번호</Form.Label>
-            <Form.Control type="text" placeholder="Enter card number" />
-          </Form.Group>
-          <Form.Group controlId="formCardName">
-            <Form.Label>소유자명</Form.Label>
-            <Form.Control type="text" placeholder="Enter cardholder name" />
-          </Form.Group>
-          <Form.Group controlId="formExpiryDate">
-            <Form.Label>유효기한</Form.Label>
-            <Form.Control type="text" placeholder="MM/YY" />
-          </Form.Group>
-          <Form.Group controlId="formCVV">
-            <Form.Label>CVV</Form.Label>
-            <Form.Control type="text" placeholder="Enter CVV" />
-          </Form.Group>
-        </Form>
+        <Swiper
+          style={{ width: "300px", height: "300px" }}
+          modules={[Navigation, Pagination]}
+          spaceBetween={50}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true }}
+        >
+          <SwiperSlide>카드1</SwiperSlide>
+          <SwiperSlide>카드2</SwiperSlide>
+          <SwiperSlide>카드3</SwiperSlide>
+        </Swiper>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
