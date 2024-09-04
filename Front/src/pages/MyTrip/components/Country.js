@@ -1,10 +1,6 @@
 const Country = (props) => {
-  function addCountry() {
-    alert("국가 추가");
-  }
   return (
     <div
-      onClick={addCountry}
       style={{
         position: "relative", // Make the container relative for absolute positioning of children
         display: "flex",

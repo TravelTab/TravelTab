@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import Sidebar from "../../shared/components/Sidebar";
 import MyCountryCarousel from "../MyTrip/components/MyCountryCarousel";
-import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   // 카드 이미지 슬라이더 상태 관리
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const navigate = useNavigate();
   const cardImages = [
     "./img/Main/Rectangle 16_28.png",
     "./img/Main/Rectangle 16_29.png", // 추가할 이미지 경로
@@ -68,7 +66,9 @@ const Main = () => {
           <div className="absolute left-[4px] top-[34px] text-[20px] font-['Inter'] font-semibold text-[#000] whitespace-nowrap">
             김토뱅님의 여행 카드 정보
           </div>
-          <MyCountryCarousel />
+          <div style={{ cursor: "pointer" }}>
+            <MyCountryCarousel />
+          </div>
         </div>
 
         {/* 환율 정보 섹션 */}
@@ -85,9 +85,7 @@ const Main = () => {
           <div className="absolute left-[1.37%] right-[33.11%] top-0 bottom-[85.57%] text-[24px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#000]">
             환율
           </div>
-          <button onClick={() => navigate("/mytrip")}>
-            <MyCountryCarousel />
-          </button>
+          <MyCountryCarousel />
         </div>
 
         {/* ATM 길찾기 섹션 */}
