@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import Sidebar from "../../shared/components/Sidebar";
+import SwiperWindow from "../../shared/components/SwiperWindow/SwiperWindow"
+import Card from "../MyCard/components/Card";
 
 const Main = () => {
   // 카드 이미지 슬라이더 상태 관리
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  <SwiperWindow>
+    <Card/>
+    <Card/>
+  </SwiperWindow>
   const cardImages = [
     "./img/Main/Rectangle 16_28.png",
     "./img/Main/Rectangle 16_29.png", // 추가할 이미지 경로
