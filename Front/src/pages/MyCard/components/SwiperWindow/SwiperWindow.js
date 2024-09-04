@@ -21,9 +21,7 @@ const SwiperWindow = (props) => {
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
       >
-        <SwiperSlide>{props.children}</SwiperSlide>
-        <SwiperSlide>{props.children}</SwiperSlide>
-        <SwiperSlide>{props.children}</SwiperSlide>
+        {props.children}
       </Swiper>
     </div>
   );
