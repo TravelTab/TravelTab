@@ -46,8 +46,8 @@ const ProfileEdit = () => {
 
   return (
     <DisplaySetting>
+    <Header />
       <div className="container">
-        <Header />
         <div className="profile-image"></div>
         <div className="text">{profile.이름}</div>
 

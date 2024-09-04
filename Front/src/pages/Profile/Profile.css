@@ -1,6 +1,5 @@
 /* 전체 컨테이너 스타일 */
 .container {
-  position: absolute;
   left: 0;
   top: 0;
   width: 100vw;
@@ -9,7 +8,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
 }
 
 /* 프로필 이미지 스타일 */
