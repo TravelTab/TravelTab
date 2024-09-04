@@ -1,11 +1,37 @@
 import Header from "../../shared/components/Header";
 import DisplaySetting from "../../shared/DisplaySetting";
 import Country from "./components/Country";
+import SwiperWindow from "../../shared/components/SwiperWindow";
+import MyCountryCarousel from "./components/MyCountryCarousel";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const MyTrip = () => {
   return (
     <DisplaySetting>
       <Header />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center", // Center horizontally
+          marginTop: "50px",
+          fontSize: "20px",
+          fontFamily: "Inter",
+          fontWeight: "600",
+          color: "#000",
+          whiteSpace: "nowrap",
+        }}
+      >
+        내 여행지
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center", // Center horizontally
+        }}
+      >
+        <MyCountryCarousel />
+      </div>
+
       <div
         style={{
           display: "flex",

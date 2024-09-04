@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Sidebar from "../../shared/components/Sidebar";
-import SwiperWindow from "./SwiperWindow/SwiperWindow";
+import MyCountryCarousel from "../MyTrip/components/MyCountryCarousel";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   // 카드 이미지 슬라이더 상태 관리
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-
+  const navigate = useNavigate();
   const cardImages = [
     "./img/Main/Rectangle 16_28.png",
     "./img/Main/Rectangle 16_29.png", // 추가할 이미지 경로
@@ -48,8 +49,10 @@ const Main = () => {
       <div className="absolute left-[-75px] top-[587px] w-[575px] h-[387px] bg-[linear-gradient(180deg,#f0ffd6_0%,#c5ffd5_100%)]"></div>
 
       {/* 타이틀 */}
-      <div className="absolute -translate-x-1/2 left-1/2 top-[10px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap"
-      style={{ textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)' }}>
+      <div
+        className="absolute -translate-x-1/2 left-1/2 top-[10px] text-[20px] leading-[120%] tracking-[-0.02em] font-['Noto_Sans_KR'] font-semibold text-[#000] text-center whitespace-nowrap"
+        style={{ textShadow: "3px 3px 6px rgba(0, 0, 0, 0.7)" }}
+      >
         Travel Tap
       </div>
 
@@ -65,72 +68,11 @@ const Main = () => {
           <div className="absolute left-[4px] top-[34px] text-[20px] font-['Inter'] font-semibold text-[#000] whitespace-nowrap">
             김토뱅님의 여행 카드 정보
           </div>
-          <SwiperWindow>
-            <img
-              className="absolute left-0 top-[67px]"
-              width="294"
-              height="155"
-              src="./img/Main/Rectangle 16_28.png"
-            ></img>
-          </SwiperWindow>
-          <div className="absolute left-[9px] top-[199px] w-[48px] h-[6px] flex flex-row items-center justify-start gap-[4px]">
-            {cardImages.map((_, index) => (
-              <div
-                key={index}
-                className={`w-[6px] h-[6px] shrink-0 rounded-[10px] ${
-                  currentCardIndex === index
-                    ? "bg-[#fff]"
-                    : "bg-[#fff] opacity-[.5]"
-                }`}
-              ></div>
-            ))}
-          </div>
-          {/* 오른쪽 화살표 */}
-          <img
-            className="absolute left-[266px] top-[118px] z-10 cursor-pointer"
-            width="23"
-            height="36"
-            src="./img/Main/Component 16_35.png"
-            alt="오른쪽 화살표"
-            onClick={nextCard}
-          />
-          {/* 왼쪽 화살표 */}
-          <img
-            className="absolute left-[4px] top-[118px] z-10 cursor-pointer"
-            width="23"
-            height="36"
-            src="./img/Main/Component 16_37.png"
-            alt="왼쪽 화살표"
-            onClick={prevCard}
-          />
+          <MyCountryCarousel />
         </div>
 
         {/* 환율 정보 섹션 */}
         <div className="absolute left-0 top-[282px] w-[293px] h-[194px] flex">
-          <img
-            className="absolute left-0 top-[67px] cursor-pointer"
-            width="293"
-            height="127"
-            src="./img/Main/Rectangle 26_46.png"
-            alt="환율 정보 이미지"
-            onClick={() => alert("환율 정보 클릭됨")}
-          />
-          <img
-            className="absolute left-[264px] top-[116px] z-10 cursor-pointer"
-            width="22"
-            height="36"
-            src="./img/Main/Component 36_52.png"
-            alt="왼쪽 화살표"
-            onClick={() => alert("다음 환율 정보 클릭됨")}
-          />
-          <img
-            className="absolute left-[4px] top-[116px] z-10 cursor-pointer"
-            width="22"
-            height="36"
-            src="./img/Main/Component 26_50.png"
-            alt="이전 환율 카드 클릭됨"
-            onClick={() => alert("이전 환율 정보 클릭됨")}
-          />
           <div className="absolute left-[9px] top-[181px] w-[48px] h-[6px] flex flex-row items-center justify-start gap-[4px]">
             <div className="w-[22px] h-[6px] shrink-0 bg-[#fff] rounded-[10px]"></div>
             <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
@@ -143,46 +85,9 @@ const Main = () => {
           <div className="absolute left-[1.37%] right-[33.11%] top-0 bottom-[85.57%] text-[24px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#000]">
             환율
           </div>
-        </div>
-
-        {/* 일본 환율 정보 섹션 */}
-        <div className="absolute left-0 top-[282px] w-[293px] h-[194px] flex">
-          <img
-            className="absolute left-0 top-[67px] cursor-pointer"
-            width="293"
-            height="127"
-            src="./img/Main/Rectangle 220_176.png"
-            alt="일본 환율 정보 이미지"
-            onClick={() => alert("일본 환율 정보 클릭됨")}
-          />
-          <div className="absolute left-[9px] top-[181px] w-[48px] h-[6px] flex flex-row items-center justify-start gap-[4px]">
-            <div className="w-[22px] h-[6px] shrink-0 bg-[#fff] rounded-[10px]"></div>
-            <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
-            <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
-            <div className="w-[6px] h-[6px] shrink-0 bg-[#fff] rounded-[10px] opacity-[.5]"></div>
-          </div>
-          <img
-            className="absolute left-[264px] top-[116px] z-10 cursor-pointer"
-            width="22"
-            height="36"
-            src="./img/Main/Component 320_177.png"
-            alt="오른쪽 화살표"
-            onClick={() => alert("다음 해외 환율 정보 클릭됨")}
-          />
-          <img
-            className="absolute left-[4px] top-[116px] z-10 cursor-pointer"
-            width="22"
-            height="36"
-            src="./img/Main/Component 220_178.png"
-            alt="왼쪽 화살표"
-            onClick={() => alert("이전 해외 환율 정보 클릭됨")}
-          />
-          <div className="absolute -translate-x-1/2 left-[calc(50%+-122px)] top-[74px] text-[20px] font-['Inter'] font-semibold text-[#000] whitespace-nowrap">
-            일본
-          </div>
-          <div className="absolute -translate-x-1/2 left-[calc(50%+-42px)] top-[152px] text-[20px] font-['Inter'] font-semibold text-[#fff] whitespace-nowrap">
-            JPY 100 = 923.96원
-          </div>
+          <button onClick={() => navigate("/mytrip")}>
+            <MyCountryCarousel />
+          </button>
         </div>
 
         {/* ATM 길찾기 섹션 */}
