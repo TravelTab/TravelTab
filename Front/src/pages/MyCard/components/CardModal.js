@@ -5,7 +5,7 @@ const CardModal = ({ show, handleClose }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>카드 정보 입력</Modal.Title>
+        <Modal.Title>카드 선택</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
