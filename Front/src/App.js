@@ -13,15 +13,18 @@ import MyCard from "./pages/MyCard/MyCard.js";
 import MyTrip from "./pages/MyTrip/MyTrip.js";
 import Notice from "./pages/Notice/Notice.js";
 import Profile from "./pages/Profile/Profile.js";
+<<<<<<< HEAD
+=======
+import ProfileEdit_ from "./pages/ProfileEdit/ProfileEdit_.js";
+>>>>>>> 27d84c29dfda5a8c9da0d87a466ad27642b9d6bc
 import ProfileEdit from "./pages/ProfileEdit/ProfileEdit.js";
 import Error from "./pages/Error.js";
-import SwiperWindow from "./pages/MyCard/components/SwiperWindow/SwiperWindow.js";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<FirstPage />} />
+        <Route path="/" element={<Main />} />
         {/* 서연 */}
         <Route path="/exchangerate" element={<ExchangeRate />} />
         {/* 태양 */}
@@ -35,10 +38,14 @@ function App() {
         {/* 영현 */}
         <Route path="/notice" element={<Notice />} />
         {/* 태양 */}
-        <Route path="/swiperwindow" element={<SwiperWindow />} />
         <Route path="/profile" element={<Profile />} />
         {/* 태양 */}
+<<<<<<< HEAD
         <Route path="/profileedit" element={<ProfileEdit />} />
+=======
+        <Route path="/profileEdit" element={<ProfileEdit />} />
+        <Route path="/profileedit_" element={<ProfileEdit_ />} />
+>>>>>>> 27d84c29dfda5a8c9da0d87a466ad27642b9d6bc
         {/* 태양 */}
 
         <Route path="/error" element={<Error />} exact />
