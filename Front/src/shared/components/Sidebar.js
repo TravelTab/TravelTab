@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Sidebar.module.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ width = 450, children }) => {
   const [isOpen, setOpen] = useState(false);
@@ -10,27 +10,27 @@ const Sidebar = ({ width = 450, children }) => {
   const navigate = useNavigate();
 
   const handleMyCard = () => {
-    navigate('/mycard'); // 버튼 클릭 시 연결되는 주소
+    navigate("/mycard"); // 버튼 클릭 시 연결되는 주소
   };
 
   const handleMyTrip = () => {
-    navigate('/mytrip'); // 버튼 클릭 시 연결되는 주소
+    navigate("/mytrip"); // 버튼 클릭 시 연결되는 주소
   };
 
   const handleATMMap = () => {
-    navigate('/atmmap'); // 버튼 클릭 시 연결되는 주소
+    navigate("/atmmap"); // 버튼 클릭 시 연결되는 주소
   };
 
   const handleExchangeRate = () => {
-    navigate('/exchangerate'); // 버튼 클릭 시 연결되는 주소
+    navigate("/exchangerate"); // 버튼 클릭 시 연결되는 주소
   };
 
   const handleNotice = () => {
-    navigate('/notice'); // 버튼 클릭 시 연결되는 주소
+    navigate("/notice"); // 버튼 클릭 시 연결되는 주소
   };
 
   const handleProfile = () => {
-    navigate('/profile'); // 버튼 클릭 시 연결되는 주소
+    navigate("/profile"); // 버튼 클릭 시 연결되는 주소
   };
 
   // button 클릭 시 토글
@@ -73,29 +73,33 @@ const Sidebar = ({ width = 450, children }) => {
         }}
       >
         <button onClick={() => toggleMenu()} className={styles.button}>
-          {isOpen ? <span>X</span> : <span>=</span>}
+          {isOpen ? (
+            <img src="./img/Detail/X.png" />
+          ) : (
+            <img src="./img/Main/Hamburger.png" />
+          )}
         </button>
         <div className={styles.content}>
-          <div style={{cursor: "pointer",}} onClick={handleProfile}>
-          프로필
+          <div style={{ cursor: "pointer" }} onClick={handleProfile}>
+            프로필
           </div>
-          <hr/>
+          <hr />
           <ul>
-            <li style={{cursor:"pointer"}} onClick={handleMyCard}>
-            내 카드
-          </li>
-          <li style={{cursor:"pointer"}} onClick={handleMyTrip}>
-            내 여행
-          </li>
-          <li style={{cursor:"pointer"}} onClick={handleATMMap}>
-            ATM 찾기
-          </li>
-          <li style={{cursor:"pointer"}} onClick={handleExchangeRate}>
-            환율 정보
-          </li>
-          <li style={{cursor:"pointer"}} onClick={handleNotice}>
-            공지사항
-          </li>
+            <li style={{ cursor: "pointer" }} onClick={handleMyCard}>
+              내 카드
+            </li>
+            <li style={{ cursor: "pointer" }} onClick={handleMyTrip}>
+              내 여행
+            </li>
+            <li style={{ cursor: "pointer" }} onClick={handleATMMap}>
+              ATM 찾기
+            </li>
+            <li style={{ cursor: "pointer" }} onClick={handleExchangeRate}>
+              환율 정보
+            </li>
+            <li style={{ cursor: "pointer" }} onClick={handleNotice}>
+              공지사항
+            </li>
           </ul>
         </div>
       </div>
