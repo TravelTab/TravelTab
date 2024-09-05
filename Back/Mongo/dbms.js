@@ -49,7 +49,8 @@ async function register(email, password, username) {
     username: username,
     phonenumber: '00000000000',
     travel: [],
-    card: []
+    card: [],
+    address: ''
   });
 
   await newUsers.save()
@@ -100,7 +101,8 @@ function Schema(data){
         username: String,
         phonenumber: String,
         travel: [Object],
-        card: [String]
+        card: [String],
+        address: String
       });
       const usersinfo = mongoose.models.usersinfo || mongoose.model('usersinfo', uSchema, 'usersinfo');
       return usersinfo;
