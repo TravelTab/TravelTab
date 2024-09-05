@@ -33,16 +33,26 @@ const Modal = ({ isOpen, onClose }) => {
       },
       body: data,
     })
-      .then((response) => {
-        if (response.ok) {
-          console.log('회원가입 요청을 보냈습니다.');
-        } else {
-          console.error('회원가입 요청을 보내는데 실패하였습니다.');
+    .then(response => response.text()).then(res => {
+        if(res === '0'){
+          alert('회원가입에 성공하였습니다.');
+          handleClose();
         }
+        else {alert('중복된 이메일입니다. 다른 이메일로 시도하여주시기 바랍니다.');}
       })
       .catch((error) => {
         console.error('Error:', error);
       });
+  };
+
+  const handleClose = () => {
+    setRegisterInfo({
+      email: '',
+      password: '',
+      pswdcheck: '',
+      username: '',
+    });
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -52,9 +62,8 @@ const Modal = ({ isOpen, onClose }) => {
   <div className="relative bg-white w-[300px] h-[450px] rounded-lg p-4 shadow-lg">
     <button
       className="absolute top-2 right-2 text-xl font-bold"
-      onClick={onClose}
-    >
-      ×
+      onClick={handleClose}
+    >×
     </button>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
