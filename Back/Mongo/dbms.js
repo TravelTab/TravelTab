@@ -1,6 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose'); // 몽고DB 몽구스 모듈
 const jwt = require('jsonwebtoken');
+const api = require('../api/api');
 // 몽고DB 접속 테스트
 const uri = process.env.MONGO_URL_DATA; // 보안정보로 .env 참고
 const secretkey = process.env.SECRET_KEY; // 보안정보로 .env 참고
@@ -72,11 +73,11 @@ async function login(email, password) {
   return token;
 };
 
-async function loginapi(email, password) {
-  const users = Schema('usersinfo');
-  const data = await users.find({"email": email, "password": password});
-  return data._id;
-};
+async function userfind(objectId){
+const users = Schema('usersinfo');
+const userinfo = await users.find({"_id": objectId});
+return userinfo;
+}
 
 async function freeatm() {
   const freeatm = Schema('freeatm');
@@ -131,7 +132,7 @@ function Schema(data){
 
 
 
-module.exports = { check, start, end, last, register,login, freeatm, loginapi, Schema, cardfreeatm }; // 모듈화 구문
+module.exports = { check, start, end, last, register,login, freeatm, Schema, cardfreeatm, userfind}; // 모듈화 구문
 // 몽고DB 접속 코드 끝
 
 

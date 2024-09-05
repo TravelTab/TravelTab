@@ -7,6 +7,7 @@ const exchangequery = require('./exchange/nowexchange');
 const exchangeinfo = require('./exchange/exchangeinfo');
 const api = require('./api/api');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 const app = express();
 app.use(cors());
@@ -182,6 +183,17 @@ app.get('/getAtms/:country', async (req, res) => {
 
   await dbms.end();
 });
+
+app.get('/mytravels', async (req, res) =>{
+  const id = await api.verifytoken(req.headers.authorization);
+  let data = String(id.id);
+  const objectId = new mongoose.Types.ObjectId(data);
+  await dbms.start();
+  const userinfo = await dbms.userfind(objectId);
+  console.log(userinfo);
+  res.send(userinfo);
+});
+
 
 // 사용자가 현재 위치한 국가와
 // 사용자가 소유하고 있는 여행 카드를 기반으로
