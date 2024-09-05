@@ -12,14 +12,14 @@ const MyCard = () => {
       advantage:
         "연회비 없음<br/>해외 이용 수수료 면제<br/>주요 통화 환전시 환율 100% 우대",
       current: "미국, 일본, 기타, 등등",
-      img_url: "./img/card/트래블로그.png",
+      img_url: "./img/card/hana.png",
     },
     {
       card_name: "우리카드 (0828)",
       advantage:
         "연회비 없음<br/>해외 이용 수수료 면제<br/>주요 통화 환전시 환율 100% 우대",
       current: "미국, 일본, 기타, 등등",
-      img_url: "./img/card/우리카드.png",
+      img_url: "./img/card/woori.png",
     },
   ];
 

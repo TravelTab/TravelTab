@@ -5,7 +5,7 @@ import SwiperWindow from "../../../shared/components/SwiperWindow";
 const MyCountryCarousel = () => {
   const country_data = [
     {
-      img_url: "./img/MyTrip/Rectangle 3712_49.png",
+      img_url: "./img/MyTrip/Rectangle3712_49.png",
       country_name: "일본",
       exchange_rate: "923.96원",
     },

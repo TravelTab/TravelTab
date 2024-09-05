@@ -70,11 +70,7 @@ const TermOfUse = ({ height = 200, children }) => {
             gap: "8px", // 이미지와 텍스트 사이의 간격 조절
           }}
         >
-          <img
-            width="30"
-            height="30"
-            src="./img/MyCard/Group 149_229.png"
-          ></img>
+          <img width="30" height="30" src="./img/MyCard/Group149_229.png"></img>
           <div
             style={{
               fontSize: "16px",

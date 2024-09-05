@@ -37,7 +37,7 @@ const CardModal = ({ show, handleClose }) => {
           <SwiperSlide style={{ textAlign: "center" }}>
             <h4 style={{ marginTop: "50px" }}>하나 트래블로그</h4>
             <img
-              src="./img/card/트래블로그.png"
+              src="./img/card/hana.png"
               style={{
                 position: "absolute",
                 width: "200px",
@@ -49,7 +49,7 @@ const CardModal = ({ show, handleClose }) => {
           <SwiperSlide style={{ textAlign: "center" }}>
             <h4 style={{ marginTop: "50px" }}>트래블월렛</h4>
             <img
-              src="./img/card/트래블월렛.jfif"
+              src="./img/card/travelwallet.jfif"
               style={{
                 position: "absolute",
                 width: "200px",
@@ -61,7 +61,7 @@ const CardModal = ({ show, handleClose }) => {
           <SwiperSlide style={{ textAlign: "center" }}>
             <h4 style={{ marginTop: "50px" }}>토스</h4>
             <img
-              src="./img/card/토스.jfif"
+              src="./img/card/toss.jfif"
               style={{
                 position: "absolute",
                 width: "200px",
@@ -73,7 +73,7 @@ const CardModal = ({ show, handleClose }) => {
           <SwiperSlide style={{ textAlign: "center" }}>
             <h4 style={{ marginTop: "50px" }}>신한 SOL 트래블</h4>
             <img
-              src="./img/card/신한쏠트래블.png"
+              src="./img/card/shinhan.png"
               style={{
                 position: "absolute",
                 width: "200px",
@@ -85,7 +85,7 @@ const CardModal = ({ show, handleClose }) => {
           <SwiperSlide style={{ textAlign: "center" }}>
             <h4 style={{ marginTop: "50px" }}>KB 국민 트래블러스</h4>
             <img
-              src="./img/card/트래블러스.jfif"
+              src="./img/card/kb.jfif"
               style={{
                 position: "absolute",
                 width: "200px",
@@ -97,7 +97,7 @@ const CardModal = ({ show, handleClose }) => {
           <SwiperSlide style={{ textAlign: "center" }}>
             <h4 style={{ marginTop: "50px" }}>우리 위비트래블</h4>
             <img
-              src="./img/card/우리카드.png"
+              src="./img/card/woori.png"
               style={{
                 position: "absolute",
                 width: "200px",

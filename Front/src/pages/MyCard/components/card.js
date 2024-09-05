@@ -19,7 +19,7 @@ const Card = (props) => {
           }}
           width="24"
           height="24"
-          src="./img/MyCard/Add card9_221.png"
+          src="./img/MyCard/Addcard9_221.png"
           onClick={() => alert("카드추가")}
         ></img>
         <div style={{ marginLeft: "20px", textAlign: "left" }}>
