@@ -130,6 +130,7 @@ app.get('/travel.html', (req, res) => {
   console.log('travel.html 페이지를 보내주었습니다!');
 });
 
+
 app.get('/mytravel', async (req, res) => {
   console.log('서버에서 각 나라별 오늘의 환율을 조회합니다.');
   let nowdate = moment().format('YYYYMMDD');
@@ -148,6 +149,15 @@ app.get('/mytravel', async (req, res) => {
 });
 
 //travel 페이지 부분 끝
+
+// 내 여행지 추가하기
+app.post('/addmytravel', async(req, res) => {
+  // 로그인한 사용자 id 가져오기
+  // 사용자가 선택한 여행지 가져오기
+  // 여행지 목록 추가
+});
+
+
 
 app.get('/getAtms/:country', async (req, res) => {
   try {
@@ -182,6 +192,46 @@ app.get('/getAtms/:country', async (req, res) => {
 
   await dbms.end();
 });
+
+// 내 카드 불러오기
+app.get('/mycard', async(req, res) => {
+  // 로그인한 사용자의 id 가져오기
+  // 해당 사용자가 등록한 카드 목록 가져오기
+});
+
+// 내 카드 추가하기
+app.post('/addmycard', async(req, res) => {
+  //로그인한 사용자의 id 가져오기
+  // cardinfo 컬렉션에서 카드 이름 가져오기
+  // 사용자가 추가한 카드 이름을 usersinfo의 card 배열에 저장하기
+})
+
+
+// 내 정보 가져오기 
+app.get('/myprofile', async(req, res) => {
+  // 사용자의 정보를 가져온다
+
+});
+
+// 내 정보 수정하기
+app.post('/editmyprofile', async(req, res) => {
+  // 사용자의 id를 가져온다 
+  // 사용자가 정보를 수정한다
+  // 수정한 정보를 받아 저장한다
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 사용자가 현재 위치한 국가와
 // 사용자가 소유하고 있는 여행 카드를 기반으로
@@ -236,3 +286,4 @@ app.get('/getAtmByUser/:userId/:country', async (req, res) => {
   }
   await dbms.end();
 });
+
