@@ -16,7 +16,7 @@ const FirstPage = () => {
         const token = await verifytoken();
         if (token !== 'null') {
           console.log('토큰이 유효합니다.');
-          //window.location.href = "/main";
+          window.location.href = "/main";
         } else {
           console.log('Token Invalid');
           localStorage.removeItem('id');
