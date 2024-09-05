@@ -6,10 +6,10 @@ const exchange = require('./exchange/exchange'); // 몽고DB 실행 구문 모�
 const exchangequery = require('./exchange/nowexchange');
 const exchangeinfo = require('./exchange/exchangeinfo');
 const api = require('./api/api');
-
+const cors = require('cors');
 
 const app = express();
-
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, '../Front/build'))); //경로 변환
 app.use(express.json());
@@ -30,6 +30,15 @@ app.get('/lastdate', async (req, res) => {
   res.send(lastdate);
   console.log('마지막 환율 일자를 보내주었습니다.');
   await dbms.end();
+});
+
+app.post('/verifytoken', async (req, res) => {
+  const id = await api.verifytoken(req.headers.authorization);
+  let data = JSON.stringify(id.id);
+  console.log(data);
+  if(id === null){ data = null;}
+  console.log('토큰을 검증했습니다.');
+  res.send(data);
 });
 
 //index 페이지 부분 시작
@@ -79,14 +88,12 @@ app.get('/exchange.html', (req, res) => {
 
 app.post('/execute', async (req, res) => {
   await dbms.start();//몽고DB 연결
-  //console.log('환율 정보를 가져옵니다.');
-  //let date = req.body.date;
-  //let data = await exchange.exchange(date); //환율가져오기
-  //await exchange.repeatquery(data, date);
-  //let text = "환율 정보를 가져오는데 성공했습니다."
-  //res.send(text);
-  let freeatm = await dbms.freeatm();
-  console.log(freeatm);
+  console.log('환율 정보를 가져옵니다.');
+  let date = req.body.date;
+  let data = await exchange.exchange(date); //환율가져오기
+  await exchange.repeatquery(data, date);
+  let text = "환율 정보를 가져오는데 성공했습니다."
+  res.send(text);
   await dbms.end();//몽고DB 연결해제
 });
 //exchange 페이지 부분 끝
@@ -227,7 +234,5 @@ app.get('/getAtmByUser/:userId/:country', async (req, res) => {
       console.error('ATM 데이터를 가져오는 중 오류 발생:', error);
       res.status(500).json({ error: '서버 오류가 발생했습니다. 나중에 다시 시도해주세요.' });
   }
-
-
   await dbms.end();
 });

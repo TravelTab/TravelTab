@@ -1,0 +1,59 @@
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+}
+.background {
+  width: 100%;
+  height: calc(883px + 56px);
+  background-image: url(../../../public/img/Main/background.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+}
+
+.topside {
+  top: 0px;
+  position: sticky;
+  z-index: 9999;
+  height: 50px;
+  width: 100%;
+  background-color: #91F6BA;
+
+}
+
+.icon {
+  position: relative;
+  left: 25px;
+  top : 9px;
+  width: 32px;
+  height: 32px;
+  background-color: white;
+  border-radius: 100%;
+}
+
+.title {
+  position: relative;
+  top: -20px;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.card-title{
+  position: relative;
+  width: 300px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 20px;
+  left: 4px;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+
+}

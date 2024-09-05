@@ -27,13 +27,11 @@ async function newtoken(email, password) {
 };
 
 async function verifytoken(token) {
+  let id = '';
 jwt.verify(token, secretkey, (err, decoded) => {
-  if (err) {
-    console.log('토큰이 유효하지 않습니다.');
-  } else {
-    console.log('토큰 데이터:', decoded);
-  }
+  if(err !== null){id = null;} else {id = decoded.id;}
 });
+  return {id};
 }
 module.exports = { newtoken , verifytoken};
 
