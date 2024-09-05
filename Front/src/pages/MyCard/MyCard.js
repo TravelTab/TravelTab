@@ -30,17 +30,17 @@ const MyCard = () => {
   const finduser = async () => {
     try {
       const token = localStorage.getItem('id');
+      const data = JSON.stringify({ data: 'travelwallet' });
 
-      await fetch('http://127.0.0.1:5500/mytravels', {
-        method: 'GET',
+      await fetch('http://127.0.0.1:5500/addmycard', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `${token}`,
         },
+        body: data,
       })
-        .then((response) => response.json())
-        .then((res) => { console.log(res);
-        });
+        .then((response) => response.json()).then(res => console.log(res))
     } catch (error) {
       console.error('사용자 정보를 가져오는 중 오류 발생:', error);
     }
@@ -53,12 +53,12 @@ const MyCard = () => {
 
 
   const cards = madeMyCardList([
-    "travellog",
+    "travelog",
     "travelwallet",
     "toss",
-    "shinhan",
-    "kb",
-    "woori",
+    "SOLtravel",
+    "travelus",
+    "wibeetravel",
   ]);
   console.log(cards.myCardList);
   const card_list = cards.myCardList.map((card, index) => (

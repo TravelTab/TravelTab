@@ -1,8 +1,9 @@
+import React, { useState, useEffect } from "react";
 import Header from "../../shared/components/Header";
 import DisplaySetting from "../../shared/DisplaySetting";
 import MyCountryCarousel from "./components/MyCountryCarousel";
-import React, { useState } from "react";
 import CountrySelectorModal from "./components/CountrySelectorModal";
+import verifytoken from "../../shared/components/verifytoken";
 
 const MyTrip = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,6 +12,47 @@ const MyTrip = () => {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
   const handleSelectCountry = (country) => setSelectedCountry(country);
+
+  const checkToken = async () => {
+    try {
+      const token = await verifytoken();
+      if (token !== 'null') {
+        console.log('토큰이 유효합니다.');
+        // window.location.href = "/main";
+      } else {
+        console.log('Token Invalid');
+        localStorage.removeItem('id');
+        alert('로그인이 만료되었습니다. 로그인페이지로 이동합니다.');
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.error('토큰 검증 중 오류 발생:', error);
+    }
+  };
+
+  const finduser = async () => {
+    try {
+      const token = localStorage.getItem('id');
+      const data = JSON.stringify({ data: '영국' });
+
+      await fetch('http://127.0.0.1:5500/addmytravel', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`,
+        },
+        body: data,
+      })
+        .then((response) => response.json()).then(res => console.log(res))
+    } catch (error) {
+      console.error('사용자 정보를 가져오는 중 오류 발생:', error);
+    }
+  };
+
+  useEffect(() => {
+    checkToken(); // 토큰을 먼저 체크
+    finduser(); // 사용자 정보 가져오기
+  }, []);
 
   return (
     <DisplaySetting>

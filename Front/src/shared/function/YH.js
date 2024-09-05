@@ -19,7 +19,7 @@ const madeMyCardList = (card_list) => {
   // card_list=['travellog','travelwallet','toss','shinhan','kb','woori']
   let myCardList = [];
   card_list.map((card_name) => {
-    if (card_name === "travellog")
+    if (card_name === "travelog")
       myCardList.push({
         card_name: "트래블로그 체크 카드 (0001)",
         advantage:
@@ -43,7 +43,7 @@ const madeMyCardList = (card_list) => {
         current: "17종",
         img_url: "./img/card/toss.jfif",
       });
-    if (card_name === "shinhan")
+    if (card_name === "SOLtravel")
       myCardList.push({
         card_name: "신한 SOL 트래블 체크 카드 (0004)",
         advantage:
@@ -51,7 +51,7 @@ const madeMyCardList = (card_list) => {
         current: "42종",
         img_url: "./img/card/shinhan.png",
       });
-    if (card_name === "kb")
+    if (card_name === "travelus")
       myCardList.push({
         card_name: "KB 국민 트래블러스 체크 카드 (0005)",
         advantage:
@@ -59,7 +59,7 @@ const madeMyCardList = (card_list) => {
         current: "56종",
         img_url: "./img/card/kb.jfif",
       });
-    if (card_name === "woori")
+    if (card_name === "wibeetravel")
       myCardList.push({
         card_name: "우리 위비트래블 체크 카드 (0006)",
         advantage:

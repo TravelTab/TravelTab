@@ -15,7 +15,7 @@ const Main = () => {
   
 
   const [name, setName] = useState("김토뱅"); // 기본값은 "김토뱅"
-  const [cards, setCards] = useState([{img_url: `./img/Main/none.png`}]);
+  const [cards, setCards] = useState([{img_url: `./img/Main/none.svg`}]);
   const [travels, settravels] = useState([]);
   const [loading, setLoading] = useState(true); // 로딩 상태
 

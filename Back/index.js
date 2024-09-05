@@ -56,10 +56,12 @@ app.get('/firstpage.html', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
+  await dbms.start();
   let data = req.body;
   //console.log(data);
   let register = await dbms.register(data.email, data.password, data.username);
   res.send(register);
+  await dbms.end();
 });
 //firstpage 페이지 부분 끝
 
@@ -70,9 +72,11 @@ app.get('/login.html', (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
+  await dbms.start();
   let data = req.body;
   let token = await dbms.login(data.email, data.password);
   res.send(token);
+  await dbms.end();
 });
 //firstpage 페이지 부분 끝
 
@@ -127,28 +131,31 @@ app.get('/mytravel', async (req, res) => {
   console.log('서버에서 각 나라별 오늘의 환율을 조회합니다.');
   let nowdate = moment().format('YYYYMMDD');
   try{
-
+await dbms.start();
     let exchangedata = await exchangequery(nowdate);
     exchangedata.pop();
     let exchangeinfos = await exchangeinfo();
     exchangedata.push(exchangeinfos);
     console.log(`${exchangedata.length}개의 값을 송신`);
     res.send(exchangedata);
-
+    await dbms.end();
   } catch(error){console.error(error);}
+
 });
 
 //travel 페이지 부분 끝
 
 // 내 여행지 추가하기
 app.post('/addmytravel', async(req, res) => {
-  // 로그인한 사용자 id 가져오기const id = await api.verifytoken(req.headers.authorization);
+  await dbms.start();
+  // 로그인한 사용자 id 가져오기
+  const id = await api.verifytoken(req.headers.authorization);
   let data = String(id.id);
   const objectId = new mongoose.Types.ObjectId(data);
   const userinfo = await dbms.userfind(objectId);
 
   // 사용자가 선택한 여행지 가져오기
-  let selectedcountryname = req.body;
+  let selectedcountryname = req.body.data;
 
   // 현재 날짜 가져오기 (YYYY-MM-DD 형식)
   const currentDate = new Date().toISOString().split('T')[0];
@@ -158,13 +165,20 @@ app.post('/addmytravel', async(req, res) => {
     country: selectedcountryname,
     dateAdded: currentDate
   };
-
+  let travel = userinfo[0].travel;
+  if (travel.some(user => user.country === selectedcountryname)) {
+    //이미 등록된 여행지인 경우
+    return res.status(400).json({ message: "이미 등록된 여행지입니다." });
+    } else
   // 사용자의 여행지 목록에 추가
   try {
-    await dbms.userfindByIdAndUpdate(objectId, { $push: { travel: newTravel}});
+    const users = dbms.Schema('usersinfo');
+    await users.findByIdAndUpdate(objectId, { $push: { travel: newTravel}});
+    console.log("여행지를 성공적으로 추가 하였습니다.");
   } catch(error) {
     console.log("여행지 추가에 오류가 생겼습니다.");
   }
+  await dbms.end();
 });
 
 
@@ -203,27 +217,29 @@ app.get('/getAtms/:country', async (req, res) => {
 
 // 내 카드 추가하기
 app.post('/addmycard', async(req, res) => {
-  //로그인한 사용자의 id 가져오기
+  await dbms.start();
   const id = await api.verifytoken(req.headers.authorization);
   let data = String(id.id);
   const objectId = new mongoose.Types.ObjectId(data);
   const userinfo = await dbms.userfind(objectId);
-
+  console.log(userinfo[0]);
   // 프론트에서 카드 이름을 받아옴
-  let selectedcardname = req.body
-
+  let selectedcardname = req.body.data;
+console.log(selectedcardname);
   // 사용자가 추가한 카드 이름을 usersinfo의 card 배열에 저장하기
-  if (userinfo.cards.includes(selectedcardname)) {
-    // 이미 등록된 카드인 경우
-    return res.status(400).json({ message: "이미 등록된 카드입니다." });
+  if (userinfo[0].card.includes(selectedcardname)) {
+  //이미 등록된 카드인 경우
+  return res.status(400).json({ message: "이미 등록된 카드입니다." });
   } else {
     try{
-      await dbms.userfindByIdAndUpdate(objectId, { $push: { cards: selectedcardname } });
-
+    const users = dbms.Schema('usersinfo');
+    await users.findByIdAndUpdate(objectId, { $push: { card: selectedcardname } });
+    console.log('카드추가에 성공하였습니다.');
     } catch(error) {
-      console.log("카드 추가에 문제가 생겼습니다");
+      console.log("카드 추가에 문제가 생겼습니다" + error);
     }
   }
+  await dbms.end();
 });
 
 // 내 정보 수정하기
@@ -251,12 +267,14 @@ app.post('/editmyprofile', async(req, res) => {
 
 // userinfo 전부 가져오기
 app.get('/mytravels', async (req, res) =>{
+  await dbms.start();
   const id = await api.verifytoken(req.headers.authorization);
   let data = String(id.id);
   const objectId = new mongoose.Types.ObjectId(data);
   const userinfo = await dbms.userfind(objectId);
   console.log(userinfo);
   res.send(userinfo);
+  await dbms.end();
 });
 
 
