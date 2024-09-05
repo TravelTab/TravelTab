@@ -9,13 +9,14 @@
     "@testing-library/user-event": "^13.5.0",
     "@vis.gl/react-google-maps": "^1.1.1",
     "autoprefixer": "^10.4.20",
+    "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "postcss": "^8.4.41",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "swiper": "^11.1.12",
     "web-vitals": "^2.1.4"
   },
@@ -46,5 +47,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "tailwindcss": "^3.4.10"
-  }
+  },
+  "proxy": "http://localhost:5500"
 }

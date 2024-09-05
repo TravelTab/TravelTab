@@ -34,7 +34,7 @@ async function last() {
 };
 
 async function register(email, password, username) {
-  const users = Schema('users');
+  const users = Schema('usersinfo');
   let info = '0';
   const data = await users.find({"email": email});
   const exist = data.length;
@@ -45,7 +45,10 @@ async function register(email, password, username) {
   const newUsers = new users({
     email: email,
     password: password,
-    username: username
+    username: username,
+    phonenumber: '00000000000',
+    travel: [],
+    card: []
   });
 
   await newUsers.save()
@@ -61,16 +64,16 @@ async function register(email, password, username) {
 };
 
 async function login(email, password) {
-  const users = Schema('users');
+  const users = Schema('usersinfo');
   const data = await users.find({"email": email, "password": password});
   if(data.length == 0){return '0';}
-  let id = data._id;
+  let id = data[0]._id;
   const token = jwt.sign({id}, secretkey, { expiresIn: '1h' });
   return token;
 };
 
 async function loginapi(email, password) {
-  const users = Schema('users');
+  const users = Schema('usersinfo');
   const data = await users.find({"email": email, "password": password});
   return data._id;
 };
@@ -81,16 +84,25 @@ async function freeatm() {
   return data;
 };
 
+async function cardfreeatm() {
+  const freeatm = Schema('freeatm');
+  const data = await freeatm.find({"country": "일본"}).select({});
+  return data;
+};
+
 function Schema(data){ 
   switch(data){
-    case 'users' :
+    case 'usersinfo' :
       const uSchema = new mongoose.Schema({
         email: String,
         password: String,
-        username: String
+        username: String,
+        phonenumber: String,
+        travel: [Object],
+        card: [String]
       });
-      const users = mongoose.models.users || mongoose.model('users', uSchema);
-      return users;
+      const usersinfo = mongoose.models.usersinfo || mongoose.model('usersinfo', uSchema, 'usersinfo');
+      return usersinfo;
 
       case 'lastDate' :
         const lSchema = new mongoose.Schema({
@@ -119,5 +131,13 @@ function Schema(data){
 
 
 
-module.exports = { check, start, end, last, register,login, freeatm, loginapi }; // 모듈화 구문
+module.exports = { check, start, end, last, register,login, freeatm, loginapi, Schema, cardfreeatm }; // 모듈화 구문
 // 몽고DB 접속 코드 끝
+
+
+
+
+
+
+
+

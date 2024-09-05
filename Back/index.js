@@ -141,3 +141,93 @@ app.get('/mytravel', async (req, res) => {
 });
 
 //travel 페이지 부분 끝
+
+app.get('/getAtms/:country', async (req, res) => {
+  try {
+      await dbms.start();
+      const country = req.params.country;
+      console.log(`Requested country: ${country}`); // 요청된 국가 출력
+
+      // MongoDB에서 해당 국가 데이터를 대소문자 구분 없이 검색
+      let freeatm = await dbms.freeatm();
+      let dataFreeAtm = freeatm[0].allAtms;
+      console.log(dataFreeAtm);
+      // const atmData = await freeatm.findOne({country: country}); 
+      
+
+      if (freeatm[0].length != 0) {
+          console.log('ATM Data:', freeatm[0]); // ATM 데이터가 존재하는지 확인
+          if (freeatm[0].allAtms) {
+              console.log('ATM data found:', freeatm[0].allAtms); // ATM 데이터 출력
+              res.json(freeatm[0].allAtms); // 'allAtms' 필드의 데이터를 반환
+          } else {
+              console.log('No allAtms field in ATM data');
+              res.status(404).json({ message: '해당 국가에 대한 ATM 정보가 없습니다1.' });
+          }
+      } else {
+          console.log('ATM data not found for country:', country);
+          res.status(404).json({ message: '해당 국가에 대한 ATM 정보가 없습니다2.' });
+      }
+  } catch (error) {
+      console.error('ATM 데이터를 가져오는 중 오류 발생:', error);
+      res.status(500).json({ error: '서버 오류가 발생했습니다. 나중에 다시 시도해주세요.' });
+  }
+
+  await dbms.end();
+});
+
+// 사용자가 현재 위치한 국가와
+// 사용자가 소유하고 있는 여행 카드를 기반으로
+// 수수료가 무료인 atm기 목록 가져오기
+app.get('/getAtmByUser/:userId/:country', async (req, res) => {
+  try {
+      await dbms.start();
+      let usersinfo = dbms.Schema('usersinfo');
+      const userId = req.params.userId;
+      const country = req.params.country;
+      console.log(`Requested user ID: ${userId}, country: ${country}`); // 요청된 사용자 ID와 국가 출력
+
+      // 사용자 정보를 가져옴
+      const user = await usersinfo.findById(userId);
+      if (!user) {
+          console.log('사용자를 찾을 수 없습니다.');
+          return res.status(404).json({ message: '사용자를 찾을 수 없습니다.' });
+      }
+
+      const cardArray = user.card; // 사용자의 card 배열 가져옴
+      console.log(`User card array: ${cardArray}`);
+
+      // 국가에 해당하는 freeatm 데이터를 가져옴
+      let freeatm = await dbms.cardfreeatm();
+      // const atmData = await freeatm.find({ country: country });
+      if (!freeatm) {
+          console.log('해당 국가의 ATM 정보를 찾을 수 없습니다.');
+          return res.status(404).json({ message: '해당 국가의 ATM 정보를 찾을 수 없습니다.' });
+      }
+
+      // Set을 사용해 중복을 제거하며 데이터를 저장 (JSON 문자열화로 중복 제거)
+      const mergedAtmData = new Set();
+
+      // card 배열의 값과 일치하는 필드 데이터들을 Set에 추가 (JSON.stringify 사용)
+      console.log("카드 atm");
+      console.log(freeatm);
+
+      cardArray.forEach(card => {
+          if (freeatm[0][card]) {
+            freeatm[0][card].forEach(atm => mergedAtmData.add(JSON.stringify(atm))); // JSON 문자열화 후 Set에 추가
+          }
+      });
+
+      // 문자열화된 데이터를 다시 파싱하여 배열로 변환
+      const myCardAtmData = Array.from(mergedAtmData).map(atm => JSON.parse(atm));
+      console.log('Unique ATM data:', myCardAtmData);
+
+      res.json(myCardAtmData); // 중복을 제거한 배열 반환
+  } catch (error) {
+      console.error('ATM 데이터를 가져오는 중 오류 발생:', error);
+      res.status(500).json({ error: '서버 오류가 발생했습니다. 나중에 다시 시도해주세요.' });
+  }
+
+
+  await dbms.end();
+});
