@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 const Country = (props) => {
+  const navigate = useNavigate();
   return (
     <div
+      onClick={() => navigate("/mytrip")}
       style={{
         position: "relative", // Make the container relative for absolute positioning of children
         display: "flex",
@@ -9,6 +13,7 @@ const Country = (props) => {
         margin: "50px auto",
         width: "310px", // Set width to match the image width
         height: "128px", // Set height to match the image height
+        cursor: "pointer",
       }}
     >
       <img

@@ -1,10 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import Country from "./Country";
 import SwiperWindow from "../../../shared/components/SwiperWindow";
-import { useNavigate } from "react-router-dom";
 
 const MyCountryCarousel = () => {
-  const navigate = useNavigate();
   const country_data = [
     {
       img_url: "./img/MyTrip/Rectangle 3712_49.png",
@@ -20,7 +18,7 @@ const MyCountryCarousel = () => {
   ];
 
   const country_list = country_data.map((country) => (
-    <SwiperSlide onClick={() => navigate("/mytrip")}>
+    <SwiperSlide>
       <Country
         img_url={country.img_url}
         country_name={country.country_name}
