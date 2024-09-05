@@ -78,7 +78,7 @@ const Main = () => {
       {/* 상단 배경 */}
       <div className="main-topside">
         <div className="icon"></div>
-        <div className="title">Travel Tap</div>
+        <div className="main-title">Travel Tap</div>
         <div>
           <Sidebar />
         </div>
