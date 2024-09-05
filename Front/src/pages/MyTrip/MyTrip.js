@@ -30,10 +30,22 @@ const MyTrip = () => {
     }
   };
 
+  useEffect(() => {
+    checkToken();
+  
+    // selectedCountry가 변경될 때마다 finduser 함수 호출
+    if (selectedCountry) {
+      finduser();
+    }
+  }, [selectedCountry]);
+  
   const finduser = async () => {
     try {
       const token = localStorage.getItem('id');
-      const data = JSON.stringify({ data: '영국' });
+      const data = {
+        userId: token, // 사용자 ID를 함께 전송
+        country: selectedCountry.name,
+      };
 
       await fetch('http://127.0.0.1:5500/addmytravel', {
         method: 'POST',
@@ -41,18 +53,19 @@ const MyTrip = () => {
           'Content-Type': 'application/json',
           'Authorization': `${token}`,
         },
-        body: data,
+        body: JSON.stringify(data),
       })
-        .then((response) => response.json()).then(res => console.log(res))
+      .then(response => response.json())
+      .then(res => {alert(res.message);
+        if(res.message === "여행지를 추가 하였습니다."){
+          window.location.reload();
+        }
+      }
+    )
     } catch (error) {
       console.error('사용자 정보를 가져오는 중 오류 발생:', error);
     }
   };
-
-  useEffect(() => {
-    checkToken(); // 토큰을 먼저 체크
-    finduser(); // 사용자 정보 가져오기
-  }, []);
 
   return (
     <DisplaySetting>
@@ -126,11 +139,6 @@ const MyTrip = () => {
           >
             여행지 추가하기
           </button>
-          {selectedCountry && (
-            <p style={{ marginTop: "15px" }}>
-              Selected Country: {selectedCountry.name}
-            </p>
-          )}
           <CountrySelectorModal
             isOpen={isModalOpen}
             onClose={handleCloseModal}

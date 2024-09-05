@@ -11,9 +11,38 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 const CardModal = ({ show, handleClose }) => {
+
+  const cards = [
+    "travelog",
+    "travelwallet",
+    "toss",
+    "SOLtravel",
+    "travelus",
+    "wibeetravel",
+  ];
+
   let now_index = 0;
   function save_card() {
-    alert(now_index);
+
+
+        const token = localStorage.getItem('id');
+        const data = JSON.stringify({ data: cards[now_index] });
+  
+        fetch('http://127.0.0.1:5500/addmycard', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${token}`,
+          },
+          body: data,
+        })
+          .then((response) => response.json()).then(res => {
+            alert(res.message);
+            if(res.message === "카드추가에 성공하였습니다."){
+              window.location.reload();
+            }
+          })
+          
     handleClose();
   }
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import DisplaySetting from '../../shared/DisplaySetting.js';
 import Header from '../../shared/components/Header.js';
 import '../Profile/components/Profile.css';
@@ -10,16 +10,68 @@ import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
 
 
 const ProfileEdit = () => {
+
   const profile2 = [
     {
-      name: "김토",
-      phone: "112",
-      email: "asd@naver.com",
-      address: "한경 아카데미",
-      card: "하나은행 트래블로그",
-      imgURL: "https://i.namu.wiki/i/8hbxBG7E76wK4L7fK3-B00boYbnvXR__jemXaT_Az1thuYsNqSrIgZ4CVh4kwo7bP3kYd2PSMVlJ9MdydkAeOoeyLQrOJXSDxjGiSdWJQE4_q25mzBg9N_hFB9_LdAOQLCQ-NFNzzas3TYEKOyYfVw.webp"
+      name : "김토",
+      phone : "112",
+      email : "asd@naver.com",
+      address : "한경 아카데미",
+      card : "하나은행 트래블로그",
     }
-  ]
+  ];
+
+  // 사용자 이름을 가져오는 함수
+  const finduser = async () => {
+    try {
+      const token = localStorage.getItem('id');
+      await fetch('http://127.0.0.1:5500/mytravels', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((res) => {
+          console.log(res[0]);
+          let data = {
+            이름: res[0].username,
+            전화번호: res[0].phonenumber,
+            이메일: res[0].email,
+            주소: res[0].address,
+            프로필이미지 : "./img/Profile/animal.png"
+          };
+          setProfile(data);
+        })
+    } catch (error) {
+      console.error('사용자 정보를 가져오는 중 오류 발생:', error);
+    }
+  };
+
+  useEffect(() => {
+    finduser(); // 사용자 정보 가져오기
+  }, []);
+
+  const editprofile = async () => {
+    try {
+      const token = localStorage.getItem('id');
+      await fetch('http://127.0.0.1:5500/editmyprofile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`,
+        },
+        body: JSON.stringify(profile),
+      })
+        .then((response) => response.json())
+        .then((res) => {alert(res.message);
+          window.location.href = "/profile";
+        })
+    } catch (error) {
+      console.error('사용자 정보를 가져오는 중 오류 발생:', error);
+    }
+  };
 
   const [profile, setProfile] = useState({
     이름: profile2[0].name,
@@ -78,9 +130,10 @@ const ProfileEdit = () => {
     closeImageModal(); // 이미지 업로드 모달 닫기
   };
 
-  const handleSaveAndNavigate = () => {
+  const handleSaveAndNavigate = async () => {
     handleSave(); // 프로필 저장 처리
-    navigate('/profile'); // profile 페이지로 이동
+    editprofile();
+    //navigate('/profile'); // profile 페이지로 이동
   };
 
 

@@ -34,6 +34,12 @@ async function last() {
   return date;
 };
 
+async function emailduplicatetest(email) {
+  const users = Schema('usersinfo');
+  const data = await users.find({"email": email});
+  return data.length !== 0;
+}
+
 async function register(email, password, username) {
   const users = Schema('usersinfo');
   let info = '0';
@@ -134,7 +140,7 @@ function Schema(data){
 
 
 
-module.exports = { check, start, end, last, register,login, freeatm, Schema, cardfreeatm, userfind}; // 모듈화 구문
+module.exports = { check, start, end, last, register,login, freeatm, Schema, cardfreeatm, userfind, emailduplicatetest}; // 모듈화 구문
 // 몽고DB 접속 코드 끝
 
 

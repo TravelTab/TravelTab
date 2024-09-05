@@ -8,6 +8,7 @@ const exchangeinfo = require('./exchange/exchangeinfo');
 const api = require('./api/api');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const { start } = require('repl');
 
 const app = express();
 app.use(cors());
@@ -20,7 +21,6 @@ const port = 5500;
 
 app.listen(port, hostname, async () => {
   console.log(`서버가 시작되었습니다. http://${hostname}:${port}/`);
-  await dbms.start();
 });
 //서버 시작 구문 끝
 
@@ -153,9 +153,8 @@ app.post('/addmytravel', async(req, res) => {
   let data = String(id.id);
   const objectId = new mongoose.Types.ObjectId(data);
   const userinfo = await dbms.userfind(objectId);
-
   // 사용자가 선택한 여행지 가져오기
-  let selectedcountryname = req.body.data;
+  let selectedcountryname = req.body.country;
 
   // 현재 날짜 가져오기 (YYYY-MM-DD 형식)
   const currentDate = new Date().toISOString().split('T')[0];
@@ -175,6 +174,7 @@ app.post('/addmytravel', async(req, res) => {
     const users = dbms.Schema('usersinfo');
     await users.findByIdAndUpdate(objectId, { $push: { travel: newTravel}});
     console.log("여행지를 성공적으로 추가 하였습니다.");
+    return res.status(200).json({ message: "여행지를 추가 하였습니다." });
   } catch(error) {
     console.log("여행지 추가에 오류가 생겼습니다.");
   }
@@ -235,6 +235,7 @@ console.log(selectedcardname);
     const users = dbms.Schema('usersinfo');
     await users.findByIdAndUpdate(objectId, { $push: { card: selectedcardname } });
     console.log('카드추가에 성공하였습니다.');
+    return res.status(200).json({ message: "카드추가에 성공하였습니다." });
     } catch(error) {
       console.log("카드 추가에 문제가 생겼습니다" + error);
     }
@@ -242,28 +243,47 @@ console.log(selectedcardname);
   await dbms.end();
 });
 
-// 내 정보 수정하기
-app.post('/editmyprofile', async(req, res) => {
-  // 사용자의 id를 가져온다 
+app.post('/editmyprofile', async (req, res) => {
+  await dbms.start();
   const id = await api.verifytoken(req.headers.authorization);
   let data = String(id.id);
   const objectId = new mongoose.Types.ObjectId(data);
   const userinfo = await dbms.userfind(objectId);
-  // 사용자가 정보를 수정한다
-
-  // 수정한 정보를 받아 저장한다
-})
-
-
-
-
-
-
+  console.log(req.body);
+    // 사용자의 id를 가져온다 
+  // 사용자가 정보를 수정한 정보를 프론트에서 가져온다
+  //이메일 중복 확인
+  const username = req.body.이름;
+  const phonenumber = req.body.전화번호;
+  const email = req.body.이메일;
+  const address = req.body.주소;
 
 
-
-
-
+//   if(email && (email !== userinfo.email)) {
+//     const isdup = await dbms.emailduplicatetest(email);
+//     if(isdup) {
+//       return res.status(400).json({ message: "중복된 이메일이 존재합니다." });
+//     }
+// }
+ // 수정한 정보를 받아 저장한다
+  try{
+    const users = dbms.Schema('usersinfo');
+    await users.findByIdAndUpdate(objectId, {
+      $set: {
+        email: email,
+        username: username,
+        phonenumber: phonenumber,
+        address: address
+      }
+    });
+    res.status(200).json({ message: "프로필 수정에 성공하였습니다." });
+} catch(error) {
+    console.log("사용자 정보 수정 오류 발생" + error);
+  }
+  
+  //console.log("수정 완료");
+  await dbms.end();
+});
 
 // userinfo 전부 가져오기
 app.get('/mytravels', async (req, res) =>{
@@ -277,7 +297,6 @@ app.get('/mytravels', async (req, res) =>{
   await dbms.end();
 });
 
-
 // 사용자가 현재 위치한 국가와
 // 사용자가 소유하고 있는 여행 카드를 기반으로
 // 수수료가 무료인 atm기 목록 가져오기
@@ -289,6 +308,7 @@ app.get('/getAtmByUser/:userId/:country', async (req, res) => {
       console.log(`Requested user ID: ${userId}, country: ${country}`); // 요청된 사용자 ID와 국가 출력
 
       // 사용자 정보를 가져옴
+      await dbms.start();
       const user = await usersinfo.findById(userId);
       if (!user) {
           console.log('사용자를 찾을 수 없습니다.');
@@ -329,4 +349,4 @@ app.get('/getAtmByUser/:userId/:country', async (req, res) => {
       res.status(500).json({ error: '서버 오류가 발생했습니다. 나중에 다시 시도해주세요.' });
   }
 });
-
+// 내 정보 수정하기

@@ -19,6 +19,14 @@ const madeMyCardList = (card_list) => {
   // card_list=['travellog','travelwallet','toss','shinhan','kb','woori']
   let myCardList = [];
   card_list.map((card_name) => {
+    if (card_name === "none")
+      myCardList.push({
+        card_name: "",
+        advantage:
+          "",
+        current: "",
+        img_url: "./img/card/none.svg",
+      });
     if (card_name === "travelog")
       myCardList.push({
         card_name: "트래블로그 체크 카드 (0001)",
