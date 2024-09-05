@@ -9,7 +9,7 @@ const Profiles = () => {
     <DisplaySetting>
       <div className="container">
         <ProfileImage />
-        <div className="text">김토뱅</div>
+        <div className="text1">김토뱅</div>
         <EditButton />
         <ProfileInfo iconSrc="./img/Profile/Vector6_224.png" iconWidth="16" iconHeight="16" label="이름" value="김토뱅" />
         <ProfileInfo iconSrc="./img/Profile/Vector6_353.png" iconWidth="14" iconHeight="14" label="전화번호" value="010-1004-1004" />

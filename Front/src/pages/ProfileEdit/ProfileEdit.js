@@ -70,7 +70,7 @@ const ProfileEdit = () => {
           onClick={openImageModal}
           style={{ backgroundImage: `url(${profile.프로필이미지})`, cursor: "pointer"}}>
         </div>
-        <div className="text">{profile.이름}</div>
+        <div className="text1">{profile.이름}</div>
 
         <div className="section">
           <img className="icon" width="16" height="16" src="./img/Profile/Vector6_224.png" alt="Name" />
