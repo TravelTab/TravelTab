@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../../shared/components/Sidebar";
 import Header from "../../shared/components/Header";
 import MyCountryCarousel from "../MyTrip/components/MyCountryCarousel";
+import MyCardCarousel from "./MyCardCarousel";
 
 const Main = () => {
   return (
@@ -19,12 +20,13 @@ const Main = () => {
       {/* 메인 컨텐츠 */}
       <div
         style={{
-          position: "absolute",
+          display: "flex",
+          position: "relative",
           transform: "translateX(-50%)",
           left: "50%",
-          top: "96px",
           width: "294px",
           height: "784px",
+          marginTop: "50px",
         }}
       >
         {/* 카드 정보 섹션 */}
@@ -69,7 +71,7 @@ const Main = () => {
             김토뱅님의 여행 카드 정보
           </div>
           <div style={{ cursor: "pointer" }}>
-            <MyCountryCarousel />
+            <MyCardCarousel />
           </div>
         </div>
 
@@ -224,17 +226,6 @@ const Main = () => {
           </div>
         </div>
       </div>
-
-      {/* 추가 컨텐츠 섹션 (현재 비어 있음) */}
-      <div
-        style={{
-          position: "absolute",
-          left: "32px",
-          top: "145px",
-          width: "294px",
-          height: "170px",
-        }}
-      ></div>
     </div>
   );
 };
