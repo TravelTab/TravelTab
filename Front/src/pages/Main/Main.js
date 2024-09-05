@@ -12,8 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   const navigate = useNavigate();
-
-
+  
 
   const [name, setName] = useState("김토뱅"); // 기본값은 "김토뱅"
   const [cards, setCards] = useState([]);
@@ -33,6 +32,27 @@ const Main = () => {
         alert('로그인이 만료되었습니다. 로그인페이지로 이동합니다.');
         window.location.href = "/";
       }
+    } catch (error) {
+      console.error('토큰 검증 중 오류 발생:', error);
+    }
+  };
+
+  const rates = async () => {
+    try {
+      fetch('http://127.0.0.1:5500/mytravel')
+      .then(response => response.json())
+      .then(data => {
+        let exchangeinfo = data.pop();
+        let rate = exchangeinfo.map((info) => {
+          const { cur_unit, unit, cur } = info;
+          const exrate = Number(data[info.index].kftc_deal_bas_r.replace(/,/g, ''));
+          const localexrate = exrate.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          return {
+            [cur]: `${cur_unit} ${unit} = ${localexrate}원`
+          };
+        });
+
+      });
     } catch (error) {
       console.error('토큰 검증 중 오류 발생:', error);
     }
@@ -58,12 +78,20 @@ const Main = () => {
             });
             setCards(card);
           }
-          if(res[0].card.length !== 0){
-            let card = res[0].card.map(t => {
-              let url = {img_url: `./img/Main/${t}.png`};
+          if(res[0].travel.length !== 0){
+            console.log(res[0].travel[0].country);
+            let travel = res[0].travel.map(t => {
+              console.log(t);
+              console.log(t.country);
+              let url = {
+                cur: `${t.country}`,
+                img_url: `./img/Main/cur/japan.png`,
+                rate: "JPY 100 = 923.96원"
+              };
+              console.log(url);
               return url;
             });
-            setCards(card);
+            settravels(travel);
           }
           setName(res[0].username);
           setLoading(false);
@@ -76,27 +104,10 @@ const Main = () => {
 
   useEffect(() => {
     checkToken(); // 토큰을 먼저 체크
+    //rates();
     finduser(); // 사용자 정보 가져오기
   }, []);
 
-
-  const travel = [
-    {
-      cur: "일본",
-      img_url: "./img/MyTrip/Rectangle 3712_49.png",
-      rate: "JPY 100 = 923.96원",
-    },
-    {
-      cur: "태국",
-      img_url: "./img/MyTrip/Rectangle 3812_58.png",
-      rate: "JPY 100 = 923.96원",
-    },
-    {
-      cur: "미국",
-      img_url: "./img/MyTrip/Rectangle 3912_59.png",
-      rate: "JPY 100 = 923.96원",
-    },
-  ];
 
   const card_list = cards.map((card, index) => (
     <SwiperSlide
@@ -108,7 +119,7 @@ const Main = () => {
     </SwiperSlide>
   ));
 
-  const travel_list = travel.map((card, index) => (
+  const travel_list = travels.map((card, index) => (
     <SwiperSlide
       style={{ cursor: "pointer" }}
       onClick={() => navigate("/mycard")}
