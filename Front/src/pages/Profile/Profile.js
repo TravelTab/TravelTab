@@ -15,7 +15,6 @@ const Profile = () => {
         <Profiles/>
         <ProfileImage/>
         <ProfileInfo/>
-
         </div>
     </DisplaySetting>
   );

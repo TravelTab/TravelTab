@@ -3,6 +3,7 @@ import DisplaySetting from '../../shared/DisplaySetting.js';
 import Header from '../../shared/components/Header.js';
 import '../Profile/components/Profile.css';
 import Modal from './modal.js';
+import ImageUploadModal from './ImageUploadModal.js';
 
 const ProfileEdit = () => {
   const [profile, setProfile] = useState({
@@ -14,6 +15,8 @@ const ProfileEdit = () => {
 
 
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false); // 이미지 업로드 모달 상태
+
   const [modalContent, setModalContent] = useState(''); // 모달에 표시할 내용
   const [inputValue, setInputValue] = useState(''); // 모달 입력 값 상태
   const [currentField, setCurrentField] = useState(''); // 현재 수정 중인 필드 상태
@@ -44,11 +47,29 @@ const ProfileEdit = () => {
     closeModal(); // 모달 닫기
   };
 
+  const openImageModal = () => {
+    setIsImageModalOpen(true); // 이미지 업로드 모달 열기
+  };
+
+  const closeImageModal = () => {
+    setIsImageModalOpen(false); // 이미지 업로드 모달 닫기
+  };
+
+  const handleImageSave = (image) => {
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      프로필이미지: image, // 프로필 이미지 상태 업데이트
+    }));
+  };
+
   return (
     <DisplaySetting>
     <Header />
       <div className="container">
-        <div className="profile-image"></div>
+        <div className="profile-image"
+          onClick={openImageModal}
+          style={{ backgroundImage: `url(${profile.프로필이미지})`, cursor: "pointer"}}>
+        </div>
         <div className="text">{profile.이름}</div>
 
         <div className="section">
@@ -84,13 +105,6 @@ const ProfileEdit = () => {
           <div className="item">내 카드</div>
           <div className="value" title="하나은행 트래블로그">하나은행 트래블로그</div>
         </div>
-        
-        <div className="section">
-          <img className="icon" width="15" height="12" src="./img/Profile/Vector6_364.png" alt="Card Number" />
-          <div className="item">카드 번호</div>
-          <div className="value" title="*** **** 0828">*** **** 0828</div>
-        </div>
-
 
         <Modal
           isOpen={isModalOpen}
@@ -100,6 +114,13 @@ const ProfileEdit = () => {
           setInputValue={setInputValue}
           handleSave={handleSave}
         />
+
+        <ImageUploadModal
+          isOpen={isImageModalOpen}
+          onClose={closeImageModal}
+          handleImageSave={handleImageSave}
+        />
+
       </div>
     </DisplaySetting>
   );

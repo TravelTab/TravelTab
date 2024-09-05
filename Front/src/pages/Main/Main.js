@@ -193,7 +193,7 @@ const Main = () => {
             height="181"
             src="./img/Main/Rectangle 36_47.png"
             alt="ATM 카드 이미지"
-            onClick={() => alert("ATM 카드 클릭됨")}
+            onClick={() => navigate("/atmmap")}
           />
         </div>
           <div
