@@ -74,7 +74,7 @@ const Sidebar = ({ width = 450, children }) => {
       >
         <button onClick={() => toggleMenu()} className={styles.button}>
           {isOpen ? (
-            <img src="./img/Detail/X.png" />
+            <img src="./img/Main/x.png" />
           ) : (
             <img src="./img/Main/Hamburger.png" />
           )}

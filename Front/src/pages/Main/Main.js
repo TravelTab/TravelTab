@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/components/Sidebar";
-import './Main.css';
+import "./Main.css";
 import verifytoken from "../../shared/components/verifytoken";
 import SwiperWindowc from "./components/SwiperWindow-c/SwiperWindow";
 import SwiperWindowt from "./components/SwiperWindow-t/SwiperWindow";
@@ -8,8 +8,10 @@ import Card from "./components/card";
 import Travel from "./components/travel";
 import { SwiperSlide } from "swiper/react";
 import DisplaySetting from "../../shared/DisplaySetting";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate();
 
 
 
@@ -82,38 +84,39 @@ const Main = () => {
     {
       cur: "일본",
       img_url: "./img/MyTrip/Rectangle 3712_49.png",
-      rate: "JPY 100 = 923.96원"
+      rate: "JPY 100 = 923.96원",
     },
     {
       cur: "태국",
       img_url: "./img/MyTrip/Rectangle 3812_58.png",
-      rate: "JPY 100 = 923.96원"
+      rate: "JPY 100 = 923.96원",
     },
     {
       cur: "미국",
       img_url: "./img/MyTrip/Rectangle 3912_59.png",
-      rate: "JPY 100 = 923.96원"
+      rate: "JPY 100 = 923.96원",
     },
   ];
 
   const card_list = cards.map((card, index) => (
-    <SwiperSlide key={index}>
-      <Card
-        img_url={card.img_url}
-      />
+    <SwiperSlide
+      style={{ cursor: "pointer" }}
+      onClick={() => navigate("/mycard")}
+      key={index}
+    >
+      <Card img_url={card.img_url} />
     </SwiperSlide>
   ));
 
   const travel_list = travel.map((card, index) => (
-    <SwiperSlide key={index}>
-      <Travel
-        cur={card.cur}
-        img_url={card.img_url}
-        rate={card.rate}
-      />
+    <SwiperSlide
+      style={{ cursor: "pointer" }}
+      onClick={() => navigate("/mycard")}
+      key={index}
+    >
+      <Travel cur={card.cur} img_url={card.img_url} rate={card.rate} />
     </SwiperSlide>
   ));
-
 
   return (
     <div className="main-back">
@@ -150,16 +153,17 @@ const Main = () => {
             내 카드 ATM 찾기
           </div>
           <img
+            onClick={() => navigate("/mycard")}
             style={{
               position: "absolute",
               left: "0",
               top: "65px",
               cursor: "pointer",
-              boxShadow: "0px 4px 9px -1px #00000059"
+              boxShadow: "0px 4px 9px -1px #00000059",
             }}
             width="293"
             height="181"
-            src="./img/Main/Rectangle 36_47.png"
+            src="./img/Main/Rectangle36_47.png"
             alt="ATM 카드 이미지"
           />
         </div>
