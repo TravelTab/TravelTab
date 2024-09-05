@@ -33,10 +33,10 @@
 
 /* 섹션 스타일 */
 .section {
-  width: 80%;
+  display: flex;
+  width: 100%;
   max-width: 281px;
   height: 32px;
-  display: flex;
   align-items: center;
   background-color: #efefef;
   border-radius: 9px;
@@ -55,6 +55,7 @@
 .value {
   padding-left: 1rem; /* 간격 확보를 위해 paddingLeft 추가 */
   margin-left: auto;
+  margin-right: 8px;
   font-size: 1rem;
   color: #727272;
   flex-grow: 1; /* 공간을 더 차지하도록 설정하여 텍스트가 한 줄로 출력 */
@@ -74,4 +75,8 @@
   display: flex; /* Flexbox로 설정하여 좌우 정렬 */
   align-items: center; /* 수직 가운데 정렬 */
   margin-top: 1rem;
+}
+
+.editIcon {
+  cursor: pointer;
 }

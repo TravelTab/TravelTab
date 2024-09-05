@@ -7,21 +7,20 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import styles from "./SwiperWindow.module.css";
 
 const SwiperWindow = (props) => {
   return (
     <div className="App">
       <Swiper
-        className={styles.slide}
         modules={[Navigation, Pagination]}
         spaceBetween={50}
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
+        style={{ height: "200px", width: "50vw", minWidth: "310px" }}
       >
-        <SwiperSlide>{props.children}</SwiperSlide>
+        {props.children}
       </Swiper>
     </div>
   );
