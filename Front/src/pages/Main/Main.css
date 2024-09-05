@@ -1,10 +1,10 @@
-.back {
+.main-back {
   position: absolute;
   width: 100%;
   height: 100%;
 
 }
-.background {
+.main-background {
   width: 100%;
   height: calc(883px + 56px);
   background-image: url(../../../public/img/Main/background.svg);
@@ -13,7 +13,7 @@
   background-position: bottom;
 }
 
-.topside {
+.main-topside {
   top: 0px;
   position: sticky;
   z-index: 9999;
@@ -23,7 +23,7 @@
 
 }
 
-.icon {
+.main-icon {
   position: relative;
   left: 25px;
   top : 9px;
@@ -33,7 +33,7 @@
   border-radius: 100%;
 }
 
-.title {
+.main-title {
   position: relative;
   top: -20px;
   font-size: 20px;
@@ -46,14 +46,53 @@
   white-space: nowrap;
 }
 
-.card-title{
+.main-card-title{
+  position: relative;
+  width: 300px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 24px;
+  left: 4px;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+}
+.main-card-main{
   position: relative;
   width: 300px;
   height: 30px;
   font-weight: bold;
   font-size: 20px;
   left: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
   text-align: left;
   font-family: 'Inter', sans-serif;
+}
 
+.main-travel-title{
+  position: absolute;
+  width: 300px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 20px;
+  left: 15px;
+  top: 20px;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  z-index: 10;
+}
+
+.main-travel-main{
+  position: absolute;
+  width: 300px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 20px;
+  left: 15px;
+  top: 80px;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  z-index: 10;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
