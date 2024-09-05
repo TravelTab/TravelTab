@@ -32,12 +32,13 @@ const Main = () => {
   }, []);
 
   const cards = [
-    {img_url: "./img/Main/cardsol.png"},
-    {img_url: "./img/Main/cardhana.png"},
+    { img_url: "./img/Main/cardsol.png" },
+    { img_url: "./img/Main/cardhana.png" },
   ];
 
   const travel = [
-    { cur: "일본",
+    {
+      cur: "일본",
       img_url: "./img/MyTrip/Rectangle 3712_49.png",
       rate: "JPY 100 = 923.96원"
     },
@@ -49,7 +50,8 @@ const Main = () => {
     {
       cur: "미국",
       img_url: "./img/MyTrip/Rectangle 3912_59.png",
-      rate: "JPY 100 = 923.96원"},
+      rate: "JPY 100 = 923.96원"
+    },
   ];
 
   const card_list = cards.map((card, index) => (
@@ -88,18 +90,18 @@ const Main = () => {
         {/* 카드 정보 섹션 */}
         <div className="main-card-title">내카드</div>
         <div className="main-card-main"><span>김토뱅</span>님의 여행 카드 정보</div>
-      <DisplaySetting>
-        <SwiperWindowc>{card_list}</SwiperWindowc>
-      </DisplaySetting>
-      <div className="h-[30px]"></div>
-      <div className="main-card-title">환율</div>
+        <DisplaySetting>
+          <SwiperWindowc>{card_list}</SwiperWindowc>
+        </DisplaySetting>
+        <div className="h-[30px]"></div>
+        <div className="main-card-title">환율</div>
         <div className="main-card-main">내 여행 환율 정보</div>
-      <DisplaySetting>
-        <SwiperWindowt>{travel_list}</SwiperWindowt>
-      </DisplaySetting>
-          {/* ATM 길찾기 섹션 */}
+        <DisplaySetting>
+          <SwiperWindowt>{travel_list}</SwiperWindowt>
+        </DisplaySetting>
+        {/* ATM 길찾기 섹션 */}
         <div className="absolute left-0 top-[538px] w-[293px] h-[246px] flex">
-        <div className="absolute left-[1.37%] right-[46.08%] top-0 bottom-[89.03%] text-[24px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#000]">
+          <div className="absolute left-[1.37%] right-[46.08%] top-0 bottom-[89.03%] text-[24px] leading-[120%] tracking-[-0.02em] font-['Inter'] font-semibold text-[#000]">
             ATM 길찾기
           </div>
           <div className="absolute left-[4px] top-[33px] w-[201px] h-[24px] text-[20px] font-['Inter'] font-semibold text-[#000]">
