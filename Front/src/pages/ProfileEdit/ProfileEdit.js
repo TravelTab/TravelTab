@@ -5,6 +5,8 @@ import '../Profile/components/Profile.css';
 import Modal from './modal.js';
 import ImageUploadModal from './ImageUploadModal.js';
 import EditButton2 from '../Profile/components/EditButton2.js';
+import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
+
 
 
 const ProfileEdit = () => {
@@ -32,6 +34,8 @@ const ProfileEdit = () => {
   const [modalContent, setModalContent] = useState(''); // 모달에 표시할 내용
   const [inputValue, setInputValue] = useState(''); // 모달 입력 값 상태
   const [currentField, setCurrentField] = useState(''); // 현재 수정 중인 필드 상태
+
+  const navigate = useNavigate(); // navigate 훅 사용
 
   const handleIconClick = (field) => {
     setModalContent(`${field} 수정하기`); // 클릭한 필드에 따라 모달 내용 설정
@@ -73,6 +77,12 @@ const ProfileEdit = () => {
     }));
     closeImageModal(); // 이미지 업로드 모달 닫기
   };
+
+  const handleSaveAndNavigate = () => {
+    handleSave(); // 프로필 저장 처리
+    navigate('/profile'); // profile 페이지로 이동
+  };
+
 
   return (
     <DisplaySetting>
@@ -120,7 +130,7 @@ const ProfileEdit = () => {
         </div>
 
         {/* 저장 버튼 추가 */}
-        <EditButton2 onClick={handleSave} label="저장" />
+        <EditButton2 onClick={handleSaveAndNavigate } label="저장" />
 
         <Modal
           isOpen={isModalOpen}

@@ -10,6 +10,8 @@ const Header = () => {
   if (window.location.pathname === "/profile") title = "프로필";
   if (window.location.pathname === "/profileedit") title = "프로필";
   if (window.location.pathname === "/main") title = "TravelTap";
+  if (window.location.pathname === "/atmmap") title = "ATM Map";
+
   function back() {
     navigate("/main");
   }
