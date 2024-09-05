@@ -131,7 +131,7 @@ app.get('/travel.html', (req, res) => {
   console.log('travel.html 페이지를 보내주었습니다!');
 });
 
-
+// 나라별 환율 조회
 app.get('/mytravel', async (req, res) => {
   console.log('서버에서 각 나라별 오늘의 환율을 조회합니다.');
   let nowdate = moment().format('YYYYMMDD');
@@ -153,9 +153,30 @@ app.get('/mytravel', async (req, res) => {
 
 // 내 여행지 추가하기
 app.post('/addmytravel', async(req, res) => {
-  // 로그인한 사용자 id 가져오기
+  // 로그인한 사용자 id 가져오기const id = await api.verifytoken(req.headers.authorization);
+  let data = String(id.id);
+  const objectId = new mongoose.Types.ObjectId(data);
+  await dbms.start();
+  const userinfo = await dbms.userfind(objectId);
+
   // 사용자가 선택한 여행지 가져오기
-  // 여행지 목록 추가
+  let selectedcountryname = req.body;
+
+  // 현재 날짜 가져오기 (YYYY-MM-DD 형식)
+  const currentDate = new Date().toISOString().split('T')[0];
+
+  // 여행지 추가할 데이터 객체 생성
+  const newTravel = {
+    country: selectedcountryname,
+    dateAdded: currentDate
+  };
+
+  // 사용자의 여행지 목록에 추가
+  try {
+    await dbms.userfindByIdAndUpdate(objectId, { $push: { travel: newTravel}});
+  } catch(error) {
+    console.log("여행지 추가에 오류가 생겼습니다.");
+  }
 });
 
 
@@ -194,30 +215,42 @@ app.get('/getAtms/:country', async (req, res) => {
   await dbms.end();
 });
 
-// 내 카드 불러오기
-app.get('/mycard', async(req, res) => {
-  // 로그인한 사용자의 id 가져오기
-  // 해당 사용자가 등록한 카드 목록 가져오기
-});
-
 // 내 카드 추가하기
 app.post('/addmycard', async(req, res) => {
   //로그인한 사용자의 id 가져오기
-  // cardinfo 컬렉션에서 카드 이름 가져오기
+  const id = await api.verifytoken(req.headers.authorization);
+  let data = String(id.id);
+  const objectId = new mongoose.Types.ObjectId(data);
+  await dbms.start();
+  const userinfo = await dbms.userfind(objectId);
+
+  // 프론트에서 카드 이름을 받아옴
+  let selectedcardname = req.body
+
   // 사용자가 추가한 카드 이름을 usersinfo의 card 배열에 저장하기
-})
+  if (userinfo.cards.includes(selectedcardname)) {
+    // 이미 등록된 카드인 경우
+    return res.status(400).json({ message: "이미 등록된 카드입니다." });
+  } else {
+    try{
+      await dbms.userfindByIdAndUpdate(objectId, { $push: { cards: selectedcardname } });
 
-
-// 내 정보 가져오기 
-app.get('/myprofile', async(req, res) => {
-  // 사용자의 정보를 가져온다
-
+    } catch(error) {
+      console.log("카드 추가에 문제가 생겼습니다");
+    }
+  }
 });
 
 // 내 정보 수정하기
 app.post('/editmyprofile', async(req, res) => {
   // 사용자의 id를 가져온다 
+  const id = await api.verifytoken(req.headers.authorization);
+  let data = String(id.id);
+  const objectId = new mongoose.Types.ObjectId(data);
+  await dbms.start();
+  const userinfo = await dbms.userfind(objectId);
   // 사용자가 정보를 수정한다
+
   // 수정한 정보를 받아 저장한다
 })
 
@@ -232,7 +265,7 @@ app.post('/editmyprofile', async(req, res) => {
 
 
 
-
+// userinfo 전부 가져오기
 app.get('/mytravels', async (req, res) =>{
   const id = await api.verifytoken(req.headers.authorization);
   let data = String(id.id);
