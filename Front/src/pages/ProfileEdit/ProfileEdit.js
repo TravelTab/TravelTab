@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DisplaySetting from '../../shared/DisplaySetting.js';
 import Header from '../../shared/components/Header.js';
-import '../Profile/Profile.css';
+import '../Profile/components/Profile.css';
 import Modal from './modal.js';
 
 const ProfileEdit = () => {
@@ -52,31 +52,31 @@ const ProfileEdit = () => {
         <div className="text">{profile.이름}</div>
 
         <div className="section">
-          <img className="icon" width="16" height="16" src="./img/Profile/Vector6_224.png" alt="Edit" />
+          <img className="icon" width="16" height="16" src="./img/Profile/Vector6_224.png" alt="Name" />
           <div className="item">이름</div>
           <div className="value" title={profile.이름}>{profile.이름}</div> {/* title 속성을 추가하여 툴팁 표시 */}
-          <img className="icon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit"  onClick={() => handleIconClick('이름')}/>
+          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit"  onClick={() => handleIconClick('이름')}/>
         </div>
 
         <div className="section">
           <img className="icon" width="14" height="14" src="./img/Profile/Vector6_353.png" alt="Phone" />
           <div className="item">전화번호</div>
           <div className="value" title={profile.전화번호}>{profile.전화번호}</div>
-          <img className="icon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('전화번호')}/>
+          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('전화번호')}/>
         </div>
         
         <div className="section">
           <img className="icon" width="17" height="14" src="./img/Profile/Vector6_356.png" alt="Email" />
           <div className="item">이메일</div>
           <div className="value" title={profile.이메일}>{profile.이메일}</div>
-          <img className="icon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('이메일')}/>
+          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('이메일')}/>
         </div>
 
         <div className="section">
           <img className="icon" width="16" height="14" src="./img/Profile/Vector6_359.png" alt="Address" />
           <div className="item">주소</div>
           <div className="value" title={profile.주소}>{profile.주소}</div>
-          <img className="icon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('주소')}/>
+          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('주소')}/>
         </div>
 
         <div className="section">

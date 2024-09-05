@@ -183,7 +183,12 @@ const Main = () => {
             내 카드 ATM 찾기
           </div>
           <img
-            className="absolute left-0 top-[65px] cursor-pointer"
+            style={{
+              position: "absolute",
+              left: "0",
+              top: "65px",
+              cursor: "pointer",
+            }}
             width="293"
             height="181"
             src="./img/Main/Rectangle 36_47.png"
@@ -191,6 +196,38 @@ const Main = () => {
             onClick={() => alert("ATM 카드 클릭됨")}
           />
         </div>
+          <div
+            style={{
+              position: "absolute",
+              left: "4px",
+              top: "33px",
+              width: "151px",
+              height: "24px",
+              fontSize: "20px",
+              fontFamily: "Inter",
+              fontWeight: "600",
+              color: "#000",
+            }}
+          >
+            내 카드 ATM 찾기
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              left: "1.37%",
+              right: "46.08%",
+              top: "0",
+              bottom: "89.03%",
+              fontSize: "24px",
+              lineHeight: "120%",
+              letterSpacing: "-0.02em",
+              fontFamily: "Inter",
+              fontWeight: "600",
+              color: "#000",
+            }}
+          >
+            ATM 길찾기
+          </div>
         </div>
       </div>
     </div>
