@@ -53,9 +53,7 @@ const Notice = () => {
     <DisplaySetting>
       <div className="w-full min-h-screen flex flex-col items-center bg-white relative">
         <Header />
-        <h1 className="text-2xl font-semibold text-center mt-4">
-          공지사항
-        </h1>
+
 
         <div className="mt-4 w-[90%] flex items-center border-b-2 pb-2">
           <input

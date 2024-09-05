@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DisplaySetting from '../../shared/DisplaySetting.js';
 import Header from '../../shared/components/Header.js';
-import '../Profile/Profile.css';
+import '../Profile/components/Profile.css';
 import Modal from './modal.js';
 
 const ProfileEdit = () => {
