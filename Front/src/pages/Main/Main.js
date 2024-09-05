@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../../shared/components/Sidebar";
-import './Main.css';
+import "./Main.css";
 import verifytoken from "../../shared/components/verifytoken";
 import SwiperWindowc from "./components/SwiperWindow-c/SwiperWindow";
 import SwiperWindowt from "./components/SwiperWindow-t/SwiperWindow";
@@ -8,77 +8,122 @@ import Card from "./components/card";
 import Travel from "./components/travel";
 import { SwiperSlide } from "swiper/react";
 import DisplaySetting from "../../shared/DisplaySetting";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate();
+
+
+
+  const [name, setName] = useState("김토뱅"); // 기본값은 "김토뱅"
+  const [cards, setCards] = useState([]);
+  const [travels, settravels] = useState([]);
+  const [loading, setLoading] = useState(true); // 로딩 상태
+
+  // 토큰 검증 함수
+  const checkToken = async () => {
+    try {
+      const token = await verifytoken();
+      if (token !== 'null') {
+        console.log('토큰이 유효합니다.');
+        // window.location.href = "/main";
+      } else {
+        console.log('Token Invalid');
+        localStorage.removeItem('id');
+        alert('로그인이 만료되었습니다. 로그인페이지로 이동합니다.');
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.error('토큰 검증 중 오류 발생:', error);
+    }
+  };
+
+  // 사용자 이름을 가져오는 함수
+  const finduser = async () => {
+    try {
+      const token = localStorage.getItem('id');
+      await fetch('http://127.0.0.1:5500/mytravels', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((res) => {
+          if(res[0].card.length !== 0){
+            let card = res[0].card.map(t => {
+              let url = {img_url: `./img/Main/${t}.png`};
+              return url;
+            });
+            setCards(card);
+          }
+          if(res[0].card.length !== 0){
+            let card = res[0].card.map(t => {
+              let url = {img_url: `./img/Main/${t}.png`};
+              return url;
+            });
+            setCards(card);
+          }
+          setName(res[0].username);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error('사용자 정보를 가져오는 중 오류 발생:', error);
+      setLoading(false); // 오류가 발생해도 로딩을 종료
+    }
+  };
 
   useEffect(() => {
-    const checkToken = async () => {
-      try {
-        const token = await verifytoken();
-        if (token !== 'null') {
-          console.log('토큰이 유효합니다.');
-          //window.location.href = "/main";
-        } else {
-          console.log('Token Invalid');
-          localStorage.removeItem('id');
-          alert('로그인이 만료되었습니다. 로그인페이지로 이동합니다.');
-          window.location.href = "/";
-        }
-      } catch (error) {
-        console.error('토큰 검증 중 오류 발생:', error);
-      }
-    };
-    checkToken();
+    checkToken(); // 토큰을 먼저 체크
+    finduser(); // 사용자 정보 가져오기
   }, []);
 
-  const cards = [
-    { img_url: "./img/Main/cardsol.png" },
-    { img_url: "./img/Main/cardhana.png" },
-  ];
 
   const travel = [
     {
       cur: "일본",
       img_url: "./img/MyTrip/Rectangle 3712_49.png",
-      rate: "JPY 100 = 923.96원"
+      rate: "JPY 100 = 923.96원",
     },
     {
       cur: "태국",
       img_url: "./img/MyTrip/Rectangle 3812_58.png",
-      rate: "JPY 100 = 923.96원"
+      rate: "JPY 100 = 923.96원",
     },
     {
       cur: "미국",
       img_url: "./img/MyTrip/Rectangle 3912_59.png",
-      rate: "JPY 100 = 923.96원"
+      rate: "JPY 100 = 923.96원",
     },
   ];
 
   const card_list = cards.map((card, index) => (
-    <SwiperSlide key={index}>
-      <Card
-        img_url={card.img_url}
-      />
+    <SwiperSlide
+      style={{ cursor: "pointer" }}
+      onClick={() => navigate("/mycard")}
+      key={index}
+    >
+      <Card img_url={card.img_url} />
     </SwiperSlide>
   ));
 
   const travel_list = travel.map((card, index) => (
-    <SwiperSlide key={index}>
-      <Travel
-        cur={card.cur}
-        img_url={card.img_url}
-        rate={card.rate}
-      />
+    <SwiperSlide
+      style={{ cursor: "pointer" }}
+      onClick={() => navigate("/mycard")}
+      key={index}
+    >
+      <Travel cur={card.cur} img_url={card.img_url} rate={card.rate} />
     </SwiperSlide>
   ));
-
 
   return (
     <div className="main-back">
       {/* 상단 배경 */}
       <div className="main-topside">
         <div className="icon"></div>
-        <div className="title">Travel Tap</div>
+        <div className="main-title">Travel Tap</div>
         <div>
           <Sidebar />
         </div>
@@ -89,7 +134,7 @@ const Main = () => {
       <div className="absolute -translate-x-1/2 left-1/2 top-[98px] w-[294px]">
         {/* 카드 정보 섹션 */}
         <div className="main-card-title">내카드</div>
-        <div className="main-card-main"><span>김토뱅</span>님의 여행 카드 정보</div>
+        <div className="main-card-main">{loading ? (<span>로딩 중...</span>) : (<span>{name}</span>)}님의 여행 카드 정보</div>
         <DisplaySetting>
           <SwiperWindowc>{card_list}</SwiperWindowc>
         </DisplaySetting>
@@ -108,16 +153,17 @@ const Main = () => {
             내 카드 ATM 찾기
           </div>
           <img
+            onClick={() => navigate("/mycard")}
             style={{
               position: "absolute",
               left: "0",
               top: "65px",
               cursor: "pointer",
-              boxShadow: "0px 4px 9px -1px #00000059"
+              boxShadow: "0px 4px 9px -1px #00000059",
             }}
             width="293"
             height="181"
-            src="./img/Main/Rectangle 36_47.png"
+            src="./img/Main/Rectangle36_47.png"
             alt="ATM 카드 이미지"
           />
         </div>

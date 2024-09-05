@@ -100,8 +100,8 @@ const TermOfUse = ({ height = 200, children }) => {
             <button className={styles.quitbutton} onClick={() => toggleMenu()}>
               X
             </button>
-            이 약관에 동의하신다면 당신의 개인정보는 제가 마음대로 이용할 수
-            있습니다.
+            TravelTap은 원활한 서비스 제공을 위해 최소한의 범위 내에서
+            개인정보를 수집, 이용합니다.
             <Button variant="primary" onClick={handleShowModal}>
               동의하기
             </Button>

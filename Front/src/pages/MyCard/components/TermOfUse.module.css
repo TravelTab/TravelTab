@@ -2,22 +2,23 @@
   background-color: #e3ecf1;
 }
 .sidebar {
-  background-color: #ffffff;
-  border-top: 4px solid #202020;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   transition: 0.4s ease;
-  color: #202020;
+  background-color: #2c3e50; /* 어두운 배경색 */
+  color: #ecf0f1; /* 밝은 글자색 */
   z-index: 99;
 }
 
 .content {
-  padding: 40px 40px 0 20px;
-  position: relative;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: x-large;
 }
+
 .icon {
   margin: 0;
   color: #202020;
@@ -25,15 +26,23 @@
 .quitbutton {
   position: fixed;
   right: 0%;
-  background-color: aliceblue;
-  color: #1e6b7b;
-  border: 3px solid rgb(0, 0, 0);
+  background: none;
+  border: none;
+  color: #ecf0f1;
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 .agreebutton {
-  position: fixed;
-  right: 0%;
-  bottom: 0%;
-  background-color: aliceblue;
-  color: #1e6b7b;
-  border: 3px solid rgb(0, 0, 0);
+  background-color: #3498db; /* 파란색 배경 */
+  color: #fff; /* 흰색 글자 */
+  display: flex;
+  border: none;
+  border-radius: 5px; /* 둥근 모서리 */
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: fixed; /* 화면 하단에 고정 */
+  bottom: 20px; /* 하단에서 20px 위치 */
+  right: 20px; /* 오른쪽에서 20px 위치 */
 }

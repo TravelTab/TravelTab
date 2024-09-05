@@ -10,6 +10,8 @@ const Header = () => {
   if (window.location.pathname === "/profile") title = "프로필";
   if (window.location.pathname === "/profileedit") title = "프로필";
   if (window.location.pathname === "/main") title = "TravelTap";
+  if (window.location.pathname === "/atmmap") title = "ATM Map";
+
   function back() {
     navigate("/main");
   }
@@ -27,7 +29,7 @@ const Header = () => {
       {/* 뒤로가기 버튼 */}
       <img
         style={{ width: "14px", height: "24px", marginLeft: "10px" }}
-        src="./img/MyTrip/Component 111_34.png"
+        src="./img/MyTrip/Component111_34.png"
         onClick={back}
       ></img>
 

@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
+import Header from "../../shared/components/Header";
+import Sidebar from "../../shared/components/Sidebar";
 
 const ATMMap = () => {
   const [map, setMap] = useState(null);
@@ -19,7 +21,7 @@ const ATMMap = () => {
   useEffect(() => {
     const loadGoogleMapsScript = () => {
       if (!window.google) {
-        const script = document.createElement('script');
+        const script = document.createElement("script");
         script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDjKFlhABKfrk10UVUrvmbBvKtOSPDH4_k&libraries=places,geocoding,marker`; // 여기에 본인의 API Key 사용
         script.async = true;
         script.defer = true;
@@ -29,12 +31,12 @@ const ATMMap = () => {
             setApiLoaded(true); // API 로드 상태 업데이트
             getUserLocation(); // Google Maps API 로드 후 사용자 위치 가져오기
           } else {
-            console.error('Google Maps API 로드 실패');
+            console.error("Google Maps API 로드 실패");
           }
         };
 
         script.onerror = () => {
-          console.error('Google Maps API 스크립트 로드 오류');
+          console.error("Google Maps API 스크립트 로드 오류");
         };
 
         document.head.appendChild(script);
@@ -57,7 +59,7 @@ const ATMMap = () => {
             // lng: position.coords.longitude,
             // 시험용 하드코딩
             lat: 35.6814104676112, // 기본 위치 (도쿄)
-            lng: 139.76708188085172
+            lng: 139.76708188085172,
           };
           setUserPosition(userPos);
           initializeMap(userPos); // 사용자 위치로 지도 초기화
@@ -69,7 +71,7 @@ const ATMMap = () => {
             lng: 139.76708188085172,
           };
           setUserPosition(defaultPos);
-          initializeMap(defaultPos);  // 기본 위치로 지도 초기화
+          initializeMap(defaultPos); // 기본 위치로 지도 초기화
         }
       );
     } else {
@@ -85,7 +87,7 @@ const ATMMap = () => {
         center: position,
         zoom: 15,
       });
-      setMap(mapInstance);  // 비동기적으로 map 상태 업데이트
+      setMap(mapInstance); // 비동기적으로 map 상태 업데이트
     }
   };
 
@@ -99,13 +101,14 @@ const ATMMap = () => {
   // map과 userPosition이 설정된 후 마커 추가
   useEffect(() => {
     if (map && userPosition) {
-      addMarker(userPosition, "You are here!");  // map이 설정된 후에 마커 추가
+      addMarker(userPosition, "You are here!"); // map이 설정된 후에 마커 추가
     }
   }, [map, userPosition]); // map과 userPosition이 설정될 때마다 실행
 
   // 마커 추가 함수
   const addMarker = (position, title) => {
-    if (map && position) {  // map과 position이 유효한지 확인
+    if (map && position) {
+      // map과 position이 유효한지 확인
       const marker = new window.google.maps.Marker({
         position: position,
         map: map,
@@ -114,7 +117,7 @@ const ATMMap = () => {
       setMarkers((prevMarkers) => [...prevMarkers, marker]);
       console.log(`Marker added at ${position.lat}, ${position.lng}`);
     } else {
-      console.error('Map or position is not defined.');
+      console.error("Map or position is not defined.");
     }
   };
 
@@ -129,8 +132,8 @@ const ATMMap = () => {
 
       geocoder.geocode({ location: latLng }, (results, status) => {
         if (status === "OK" && results[0]) {
-          const countryComponent = results[0].address_components.find(component =>
-            component.types.includes("country")
+          const countryComponent = results[0].address_components.find(
+            (component) => component.types.includes("country")
           );
           if (countryComponent) {
             setUserLocationCountry(countryComponent.long_name);
@@ -155,7 +158,9 @@ const ATMMap = () => {
   const fetchATMDataFromDB = async (country) => {
     try {
       const encodedCountry = encodeURIComponent(country); // 한글 국가명 인코딩
-      const response = await fetch(`http://localhost:5500/getAtms/${encodedCountry}`);
+      const response = await fetch(
+        `http://localhost:5500/getAtms/${encodedCountry}`
+      );
       const data = await response.json(); // fetch의 응답을 JSON으로 변환
       console.log(data);
       console.log("받아온 데이터");
@@ -165,7 +170,7 @@ const ATMMap = () => {
         alert("해당 국가의 ATM 데이터를 찾을 수 없습니다.");
       }
     } catch (error) {
-      console.error('Error fetching ATM data:', error);
+      console.error("Error fetching ATM data:", error);
     }
   };
 
@@ -174,7 +179,9 @@ const ATMMap = () => {
     try {
       if (!userLocationCountry || !userId) return;
 
-      const response = await fetch(`http://localhost:5500/getAtmByUser/${userId}/${userLocationCountry}`);
+      const response = await fetch(
+        `http://localhost:5500/getAtmByUser/${userId}/${userLocationCountry}`
+      );
       const data = await response.json(); // fetch의 응답을 JSON으로 변환
       if (data && data.length > 0) {
         setFreeAtmKeywords(data);
@@ -183,7 +190,7 @@ const ATMMap = () => {
         alert("사용자 카드로 사용할 수 있는 수수료 무료 ATM기가 없습니다.");
       }
     } catch (error) {
-      console.error('Error fetching free ATM data:', error);
+      console.error("Error fetching free ATM data:", error);
     }
   };
 
@@ -198,12 +205,15 @@ const ATMMap = () => {
     keywords.forEach((keyword) => {
       const request = {
         location: userPosition,
-        radius: '1000',
+        radius: "1000",
         keyword: keyword,
       };
 
       service.nearbySearch(request, (results, status) => {
-        if (status === window.google.maps.places.PlacesServiceStatus.OK && results.length) {
+        if (
+          status === window.google.maps.places.PlacesServiceStatus.OK &&
+          results.length
+        ) {
           results.forEach((result) => {
             createMarker(result);
           });
@@ -228,7 +238,10 @@ const ATMMap = () => {
       };
 
       service.nearbySearch(request, (results, status) => {
-        if (status === window.google.maps.places.PlacesServiceStatus.OK && results.length) {
+        if (
+          status === window.google.maps.places.PlacesServiceStatus.OK &&
+          results.length
+        ) {
           results.forEach((result) => {
             createMarker(result);
           });
@@ -245,13 +258,13 @@ const ATMMap = () => {
     });
 
     const infoWindow = new window.google.maps.InfoWindow();
-    marker.addListener('click', () => {
+    marker.addListener("click", () => {
       const service = new window.google.maps.places.PlacesService(map);
       service.getDetails({ placeId: place.place_id }, (details, status) => {
         if (status === window.google.maps.places.PlacesServiceStatus.OK) {
           infoWindow.setContent(`
             <div><strong>${details.name}</strong><br>
-            Rating: ${details.rating || 'N/A'}<br>
+            Rating: ${details.rating || "N/A"}<br>
             ${details.formatted_address}</div>
           `);
           infoWindow.open(map, marker);
@@ -280,23 +293,28 @@ const ATMMap = () => {
 
   // 버튼에 테두리 스타일 추가
   const buttonStyle = {
-    padding: '10px',
-    margin: '10px',
-    border: '2px solid #333', // 테두리 추가
-    borderRadius: '5px',
-    backgroundColor: '#f5f5f5', // 배경 색상
-    cursor: 'pointer',
+    padding: "10px",
+    margin: "10px",
+    border: "2px solid #333", // 테두리 추가
+    borderRadius: "5px",
+    backgroundColor: "#f5f5f5", // 배경 색상
+    cursor: "pointer",
   };
 
   return (
     <div>
-      <h1>ATM Map</h1>
-      <div ref={mapRef} style={{ width: '100%', height: '600px' }}></div>
+      <Header />
+      <Sidebar />
+      <div ref={mapRef} style={{ width: "100%", height: "600px" }}></div>
 
-      <button style={buttonStyle} onClick={showATMs}>Show ATMs</button>
-      <button style={buttonStyle} onClick={searchInViewPort}>Search in Viewport</button>
+      <button style={buttonStyle} onClick={showATMs}>
+        Show ATMs
+      </button>
+      <button style={buttonStyle} onClick={searchInViewPort}>
+        Search in Viewport
+      </button>
       <button style={buttonStyle} onClick={toggleFreeFeeSearch}>
-        {isFreeFeeEnabled ? '수수료 무료 (On)' : '수수료 무료 (Off)'}
+        {isFreeFeeEnabled ? "수수료 무료 (On)" : "수수료 무료 (Off)"}
       </button>
     </div>
   );

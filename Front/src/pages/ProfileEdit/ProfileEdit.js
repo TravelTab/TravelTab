@@ -4,15 +4,29 @@ import Header from '../../shared/components/Header.js';
 import '../Profile/components/Profile.css';
 import Modal from './modal.js';
 import ImageUploadModal from './ImageUploadModal.js';
+import EditButton2 from '../Profile/components/EditButton2.js';
+import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
+
+
 
 const ProfileEdit = () => {
-  const [profile, setProfile] = useState({
-    이름: '김토뱅',
-    전화번호: '010-1004-1004',
-    이메일: 'imemail@naver.com',
-    주소: '서울특별시 한경 아카데미',
-  });
+  const profile2 = [
+    {
+      name: "김토",
+      phone: "112",
+      email: "asd@naver.com",
+      address: "한경 아카데미",
+      card: "하나은행 트래블로그",
+      imgURL: "https://i.namu.wiki/i/8hbxBG7E76wK4L7fK3-B00boYbnvXR__jemXaT_Az1thuYsNqSrIgZ4CVh4kwo7bP3kYd2PSMVlJ9MdydkAeOoeyLQrOJXSDxjGiSdWJQE4_q25mzBg9N_hFB9_LdAOQLCQ-NFNzzas3TYEKOyYfVw.webp"
+    }
+  ]
 
+  const [profile, setProfile] = useState({
+    이름: profile2[0].name,
+    전화번호: profile2[0].phone,
+    이메일: profile2[0].email,
+    주소: profile2[0].address
+  });
 
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태
   const [isImageModalOpen, setIsImageModalOpen] = useState(false); // 이미지 업로드 모달 상태
@@ -21,6 +35,7 @@ const ProfileEdit = () => {
   const [inputValue, setInputValue] = useState(''); // 모달 입력 값 상태
   const [currentField, setCurrentField] = useState(''); // 현재 수정 중인 필드 상태
 
+  const navigate = useNavigate(); // navigate 훅 사용
 
   const handleIconClick = (field) => {
     setModalContent(`${field} 수정하기`); // 클릭한 필드에 따라 모달 내용 설정
@@ -60,44 +75,52 @@ const ProfileEdit = () => {
       ...prevProfile,
       프로필이미지: image, // 프로필 이미지 상태 업데이트
     }));
+    closeImageModal(); // 이미지 업로드 모달 닫기
   };
+
+  const handleSaveAndNavigate = () => {
+    handleSave(); // 프로필 저장 처리
+    navigate('/profile'); // profile 페이지로 이동
+  };
+
 
   return (
     <DisplaySetting>
-    <Header />
+      <Header />
       <div className="container">
-        <div className="profile-image"
+        <div
+          className="profile-image"
           onClick={openImageModal}
-          style={{ backgroundImage: `url(${profile.프로필이미지})`, cursor: "pointer"}}>
-        </div>
+          style={{ backgroundImage: `url(${profile.프로필이미지})`, cursor: "pointer" }}
+        ></div>
         <div className="text1">{profile.이름}</div>
 
         <div className="section">
           <img className="icon" width="16" height="16" src="./img/Profile/Vector6_224.png" alt="Name" />
           <div className="item">이름</div>
           <div className="value" title={profile.이름}>{profile.이름}</div> {/* title 속성을 추가하여 툴팁 표시 */}
-          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit"  onClick={() => handleIconClick('이름')}/>
+          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('이름')} />
         </div>
 
         <div className="section">
           <img className="icon" width="14" height="14" src="./img/Profile/Vector6_353.png" alt="Phone" />
           <div className="item">전화번호</div>
           <div className="value" title={profile.전화번호}>{profile.전화번호}</div>
-          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('전화번호')}/>
+          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('전화번호')} />
         </div>
-        
+
         <div className="section">
           <img className="icon" width="17" height="14" src="./img/Profile/Vector6_356.png" alt="Email" />
           <div className="item">이메일</div>
           <div className="value" title={profile.이메일}>{profile.이메일}</div>
-          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('이메일')}/>
+          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('이메일')} />
         </div>
 
         <div className="section">
           <img className="icon" width="16" height="14" src="./img/Profile/Vector6_359.png" alt="Address" />
           <div className="item">주소</div>
           <div className="value" title={profile.주소}>{profile.주소}</div>
-          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('주소')}/>
+          <img className="editIcon" width="16" height="16" src="./img/ProfileEdit/Vector23_298.png" alt="Edit" onClick={() => handleIconClick('주소')} />
         </div>
 
         <div className="section">
@@ -105,6 +128,9 @@ const ProfileEdit = () => {
           <div className="item">내 카드</div>
           <div className="value" title="하나은행 트래블로그">하나은행 트래블로그</div>
         </div>
+
+        {/* 저장 버튼 추가 */}
+        <EditButton2 onClick={handleSaveAndNavigate } label="저장" />
 
         <Modal
           isOpen={isModalOpen}
