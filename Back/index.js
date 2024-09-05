@@ -18,19 +18,18 @@ app.use(express.json());
 const hostname = '127.0.0.1';
 const port = 5500;
 
-app.listen(port, hostname, () => {
+app.listen(port, hostname, async () => {
   console.log(`서버가 시작되었습니다. http://${hostname}:${port}/`);
+  await dbms.start();
 });
 //서버 시작 구문 끝
 
 dbms.check().catch(console.dir); //몽고 DB 상태확인
 
 app.get('/lastdate', async (req, res) => {
-  await dbms.start();
   let lastdate = await dbms.last();
   res.send(lastdate);
   console.log('마지막 환율 일자를 보내주었습니다.');
-  await dbms.end();
 });
 
 app.post('/verifytoken', async (req, res) => {
@@ -57,12 +56,10 @@ app.get('/firstpage.html', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-  await dbms.start();//몽고DB 연결
   let data = req.body;
   //console.log(data);
   let register = await dbms.register(data.email, data.password, data.username);
   res.send(register);
-  await dbms.end();//몽고DB 연결해제
 });
 //firstpage 페이지 부분 끝
 
@@ -73,11 +70,9 @@ app.get('/login.html', (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  await dbms.start();//몽고DB 연결
   let data = req.body;
   let token = await dbms.login(data.email, data.password);
   res.send(token);
-  await dbms.end();//몽고DB 연결해제
 });
 //firstpage 페이지 부분 끝
 
@@ -88,14 +83,12 @@ app.get('/exchange.html', (req, res) => {
 });
 
 app.post('/execute', async (req, res) => {
-  await dbms.start();//몽고DB 연결
   console.log('환율 정보를 가져옵니다.');
   let date = req.body.date;
   let data = await exchange.exchange(date); //환율가져오기
   await exchange.repeatquery(data, date);
   let text = "환율 정보를 가져오는데 성공했습니다."
   res.send(text);
-  await dbms.end();//몽고DB 연결해제
 });
 //exchange 페이지 부분 끝
 
@@ -109,7 +102,6 @@ app.get('/nowexchange', async (req, res) => {
   console.log('서버에서 환율데이터를 조회합니다.');
   let nowdate = moment().format('YYYYMMDD');
   try{
-    await dbms.start();//몽고DB 연결
     let exchangedata = await exchangequery(nowdate);
     let yesterdaydate = exchangedata.pop();
     let yesterdaydata = await exchangequery(yesterdaydate);
@@ -120,7 +112,6 @@ app.get('/nowexchange', async (req, res) => {
     console.log(`${exchangedata.length}개의 값을 송신`);
     res.send(exchangedata);
 
-    await dbms.end();//몽고DB 연결해제
   } catch(error){console.error(error);}
 });
 //nowexchange 페이지 부분 끝
@@ -136,7 +127,6 @@ app.get('/mytravel', async (req, res) => {
   console.log('서버에서 각 나라별 오늘의 환율을 조회합니다.');
   let nowdate = moment().format('YYYYMMDD');
   try{
-    await dbms.start();//몽고DB 연결
 
     let exchangedata = await exchangequery(nowdate);
     exchangedata.pop();
@@ -145,7 +135,6 @@ app.get('/mytravel', async (req, res) => {
     console.log(`${exchangedata.length}개의 값을 송신`);
     res.send(exchangedata);
 
-    await dbms.end();//몽고DB 연결해제
   } catch(error){console.error(error);}
 });
 
@@ -156,7 +145,6 @@ app.post('/addmytravel', async(req, res) => {
   // 로그인한 사용자 id 가져오기const id = await api.verifytoken(req.headers.authorization);
   let data = String(id.id);
   const objectId = new mongoose.Types.ObjectId(data);
-  await dbms.start();
   const userinfo = await dbms.userfind(objectId);
 
   // 사용자가 선택한 여행지 가져오기
@@ -183,7 +171,6 @@ app.post('/addmytravel', async(req, res) => {
 
 app.get('/getAtms/:country', async (req, res) => {
   try {
-      await dbms.start();
       const country = req.params.country;
       console.log(`Requested country: ${country}`); // 요청된 국가 출력
 
@@ -212,7 +199,6 @@ app.get('/getAtms/:country', async (req, res) => {
       res.status(500).json({ error: '서버 오류가 발생했습니다. 나중에 다시 시도해주세요.' });
   }
 
-  await dbms.end();
 });
 
 // 내 카드 추가하기
@@ -221,7 +207,6 @@ app.post('/addmycard', async(req, res) => {
   const id = await api.verifytoken(req.headers.authorization);
   let data = String(id.id);
   const objectId = new mongoose.Types.ObjectId(data);
-  await dbms.start();
   const userinfo = await dbms.userfind(objectId);
 
   // 프론트에서 카드 이름을 받아옴
@@ -247,7 +232,6 @@ app.post('/editmyprofile', async(req, res) => {
   const id = await api.verifytoken(req.headers.authorization);
   let data = String(id.id);
   const objectId = new mongoose.Types.ObjectId(data);
-  await dbms.start();
   const userinfo = await dbms.userfind(objectId);
   // 사용자가 정보를 수정한다
 
@@ -270,7 +254,6 @@ app.get('/mytravels', async (req, res) =>{
   const id = await api.verifytoken(req.headers.authorization);
   let data = String(id.id);
   const objectId = new mongoose.Types.ObjectId(data);
-  await dbms.start();
   const userinfo = await dbms.userfind(objectId);
   console.log(userinfo);
   res.send(userinfo);
@@ -282,7 +265,6 @@ app.get('/mytravels', async (req, res) =>{
 // 수수료가 무료인 atm기 목록 가져오기
 app.get('/getAtmByUser/:userId/:country', async (req, res) => {
   try {
-      await dbms.start();
       let usersinfo = dbms.Schema('usersinfo');
       const userId = req.params.userId;
       const country = req.params.country;
@@ -328,6 +310,5 @@ app.get('/getAtmByUser/:userId/:country', async (req, res) => {
       console.error('ATM 데이터를 가져오는 중 오류 발생:', error);
       res.status(500).json({ error: '서버 오류가 발생했습니다. 나중에 다시 시도해주세요.' });
   }
-  await dbms.end();
 });
 
