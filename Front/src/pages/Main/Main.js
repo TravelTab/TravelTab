@@ -120,7 +120,6 @@ const Main = () => {
               top: "65px",
               cursor: "pointer",
               boxShadow: "0px 4px 9px -1px #00000059",
-              cursor: "pointer",
             }}
             width="293"
             height="181"
