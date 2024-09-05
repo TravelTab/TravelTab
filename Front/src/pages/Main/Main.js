@@ -11,30 +11,72 @@ import DisplaySetting from "../../shared/DisplaySetting";
 
 const Main = () => {
 
-  useEffect(() => {
-    const checkToken = async () => {
-      try {
-        const token = await verifytoken();
-        if (token !== 'null') {
-          console.log('토큰이 유효합니다.');
-          //window.location.href = "/main";
-        } else {
-          console.log('Token Invalid');
-          localStorage.removeItem('id');
-          alert('로그인이 만료되었습니다. 로그인페이지로 이동합니다.');
-          window.location.href = "/";
-        }
-      } catch (error) {
-        console.error('토큰 검증 중 오류 발생:', error);
+
+
+  const [name, setName] = useState("김토뱅"); // 기본값은 "김토뱅"
+  const [cards, setCards] = useState([]);
+  const [travels, settravels] = useState([]);
+  const [loading, setLoading] = useState(true); // 로딩 상태
+
+  // 토큰 검증 함수
+  const checkToken = async () => {
+    try {
+      const token = await verifytoken();
+      if (token !== 'null') {
+        console.log('토큰이 유효합니다.');
+        // window.location.href = "/main";
+      } else {
+        console.log('Token Invalid');
+        localStorage.removeItem('id');
+        alert('로그인이 만료되었습니다. 로그인페이지로 이동합니다.');
+        window.location.href = "/";
       }
-    };
-    checkToken();
+    } catch (error) {
+      console.error('토큰 검증 중 오류 발생:', error);
+    }
+  };
+
+  // 사용자 이름을 가져오는 함수
+  const finduser = async () => {
+    try {
+      const token = localStorage.getItem('id');
+      await fetch('http://127.0.0.1:5500/mytravels', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((res) => {
+          if(res[0].card.length !== 0){
+            let card = res[0].card.map(t => {
+              let url = {img_url: `./img/Main/${t}.png`};
+              return url;
+            });
+            setCards(card);
+          }
+          if(res[0].card.length !== 0){
+            let card = res[0].card.map(t => {
+              let url = {img_url: `./img/Main/${t}.png`};
+              return url;
+            });
+            setCards(card);
+          }
+          setName(res[0].username);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error('사용자 정보를 가져오는 중 오류 발생:', error);
+      setLoading(false); // 오류가 발생해도 로딩을 종료
+    }
+  };
+
+  useEffect(() => {
+    checkToken(); // 토큰을 먼저 체크
+    finduser(); // 사용자 정보 가져오기
   }, []);
 
-  const cards = [
-    { img_url: "./img/Main/cardsol.png" },
-    { img_url: "./img/Main/cardhana.png" },
-  ];
 
   const travel = [
     {
@@ -89,7 +131,7 @@ const Main = () => {
       <div className="absolute -translate-x-1/2 left-1/2 top-[98px] w-[294px]">
         {/* 카드 정보 섹션 */}
         <div className="main-card-title">내카드</div>
-        <div className="main-card-main"><span>김토뱅</span>님의 여행 카드 정보</div>
+        <div className="main-card-main">{loading ? (<span>로딩 중...</span>) : (<span>{name}</span>)}님의 여행 카드 정보</div>
         <DisplaySetting>
           <SwiperWindowc>{card_list}</SwiperWindowc>
         </DisplaySetting>
