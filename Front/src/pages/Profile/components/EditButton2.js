@@ -1,4 +1,5 @@
 import React from 'react';
+import './Profile.css';
 
 const EditButton2 = ({ onClick, label }) => {
   return (
