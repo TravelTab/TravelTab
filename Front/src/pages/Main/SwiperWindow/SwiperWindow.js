@@ -19,7 +19,6 @@ const SwiperWindow = (props) => {
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
       >
         <SwiperSlide>{props.children}</SwiperSlide>
       </Swiper>
