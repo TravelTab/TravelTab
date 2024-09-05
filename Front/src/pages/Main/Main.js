@@ -117,7 +117,7 @@ const Main = () => {
             }}
             width="293"
             height="181"
-            src="./img/Main/Rectangle 36_47.png"
+            src="./img/Main/Rectangle36_47.png"
             alt="ATM 카드 이미지"
           />
         </div>
