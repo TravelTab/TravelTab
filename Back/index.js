@@ -9,6 +9,7 @@ const api = require('./api/api');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { start } = require('repl');
+const { runInContext } = require('vm');
 
 const app = express();
 app.use(cors());
@@ -27,9 +28,11 @@ app.listen(port, hostname, async () => {
 dbms.check().catch(console.dir); //몽고 DB 상태확인
 
 app.get('/lastdate', async (req, res) => {
+  await dbms.start();
   let lastdate = await dbms.last();
   res.send(lastdate);
   console.log('마지막 환율 일자를 보내주었습니다.');
+  await dbms.end();
 });
 
 app.post('/verifytoken', async (req, res) => {
@@ -87,12 +90,14 @@ app.get('/exchange.html', (req, res) => {
 });
 
 app.post('/execute', async (req, res) => {
+  await dbms.start();
   console.log('환율 정보를 가져옵니다.');
   let date = req.body.date;
   let data = await exchange.exchange(date); //환율가져오기
   await exchange.repeatquery(data, date);
   let text = "환율 정보를 가져오는데 성공했습니다."
   res.send(text);
+  await dbms.end();
 });
 //exchange 페이지 부분 끝
 
@@ -103,6 +108,7 @@ app.get('/ExchangeRate.html', (req, res) => {
 });
 
 app.get('/nowexchange', async (req, res) => {
+  await dbms.start();
   console.log('서버에서 환율데이터를 조회합니다.');
   let nowdate = moment().format('YYYYMMDD');
   try{
@@ -117,6 +123,7 @@ app.get('/nowexchange', async (req, res) => {
     res.send(exchangedata);
 
   } catch(error){console.error(error);}
+  await dbms.end();
 });
 //nowexchange 페이지 부분 끝
 
