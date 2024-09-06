@@ -194,7 +194,7 @@ app.get('/getAtms/:country', async (req, res) => {
   try {
       const country = req.params.country;
       console.log(`Requested country: ${country}`); // 요청된 국가 출력
-
+      await dbms.start();
       // MongoDB에서 해당 국가 데이터를 대소문자 구분 없이 검색
       let freeatm = await dbms.freeatm();
       let dataFreeAtm = freeatm[0].allAtms;
