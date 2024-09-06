@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../../shared/components/Header";
 import Sidebar from "../../shared/components/Sidebar";
+const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const ATMMap = () => {
   const [map, setMap] = useState(null);
@@ -22,7 +23,7 @@ const ATMMap = () => {
     const loadGoogleMapsScript = () => {
       if (!window.google) {
         const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDjKFlhABKfrk10UVUrvmbBvKtOSPDH4_k&libraries=places,geocoding,marker`; // 여기에 본인의 API Key 사용
+        script.src = apiKey; // 여기에 본인의 API Key 사용
         script.async = true;
         script.defer = true;
 
@@ -55,11 +56,8 @@ const ATMMap = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const userPos = {
-            // lat: position.coords.latitude,
-            // lng: position.coords.longitude,
-            // 시험용 하드코딩
-            lat: 35.6814104676112, // 기본 위치 (도쿄)
-            lng: 139.76708188085172,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
           };
           setUserPosition(userPos);
           initializeMap(userPos); // 사용자 위치로 지도 초기화
